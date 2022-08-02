@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Memo(
+
     @PrimaryKey(autoGenerate = true)
     var id : Int = 0,
     val check : Boolean,
@@ -12,4 +13,5 @@ data class Memo(
     val year : Int,
     val month : Int,
     val day : Int
+
 )

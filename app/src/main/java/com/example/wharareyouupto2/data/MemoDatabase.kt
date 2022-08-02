@@ -14,8 +14,10 @@ abstract class MemoDatabase : RoomDatabase(){
     abstract fun memoDao() : MemoDao
 
     companion object{
+
         /* @Volatile = 접근가능한 변수의 값을 cache를 통해 사용하지 않고
         thread가 직접 main memory에 접근 하게하여 동기화. */
+
         @Volatile
         private var instance : MemoDatabase? = null
 

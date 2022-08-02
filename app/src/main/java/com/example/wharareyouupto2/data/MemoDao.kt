@@ -28,6 +28,4 @@ interface MemoDao {
     @Query("SELECT * FROM Memo WHERE `check` = 1 ORDER BY year DESC, month DESC, day DESC, id DESC")
     fun readDoneData() : Flow<List<Memo>>
 
-//    @Query("SELECT * FROM Memo WHERE content LIKE :searchQuery")
-//    fun searchDatabase(searchQuery : String) : Flow<List<Memo>>
 }
