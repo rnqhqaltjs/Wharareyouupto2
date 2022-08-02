@@ -1,13 +1,13 @@
-package com.example.wharareyouupto2.ui.home
+package com.example.wharareyouupto2.ui.donelist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class DoneListViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "This is donelist Fragment"
     }
     val text: LiveData<String> = _text
 }
