@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MemoDao {
+
     // OnConflictStrategy.IGNORE = 동일한 아이디가 있을 시 무시
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addMemo(memo : Memo)
