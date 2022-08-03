@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/todolist"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/ic_todolist"
         android:title="@string/todolist" />
 
     <item
         android:id="@+id/todocalendar"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_todocalendar"
         android:title="@string/todocalendar" />
 
     <item
         android:id="@+id/donelist"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/ic_donelist"
         android:title="@string/donelist" />
 
 </menu>

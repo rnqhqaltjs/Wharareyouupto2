@@ -22,8 +22,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        android:id="@+id/cv_calendar"
+        android:id="@+id/calendarview"
         android:layout_width="match_parent"
-        android:layout_height="343dp"
-        app:mcv_calendarMode="month"/>
+        android:layout_height="343dp" >
+
+    </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

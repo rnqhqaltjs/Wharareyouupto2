@@ -4,17 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CalendarView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.wharareyouupto2.databinding.FragmentTodocalendarBinding
+import com.example.wharareyouupto2.ui.todolist.ToDoListViewModel
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 
 class ToDoCalendarFragment : Fragment() {
 
-        private var _binding: FragmentTodocalendarBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var _binding: FragmentTodocalendarBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,17 +23,24 @@ class ToDoCalendarFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this)[ToDoCalendarViewModel::class.java]
-
         _binding = FragmentTodocalendarBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val homeViewModel = ViewModelProvider(this)[ToDoCalendarViewModel::class.java]
 
         val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-        return root
+
+        binding.calendarview.setOnDateChangedListener { widget, date, selected ->
+            val day = date.day
+            Toast.makeText(requireContext(),day.toString(),Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroyView() {
