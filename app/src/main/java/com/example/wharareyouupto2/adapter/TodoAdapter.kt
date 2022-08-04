@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wharareyouupto2.databinding.TodoItemBinding
 import com.example.wharareyouupto2.model.Memo
+import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
 
-class TodoAdapter : RecyclerView.Adapter<TodoAdapter.MyViewHolder>() {
+class TodoAdapter(memoViewModel: MemoViewModel) : RecyclerView.Adapter<TodoAdapter.MyViewHolder>() {
 
     private var memoList = emptyList<Memo>()
 
@@ -22,8 +23,11 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.MyViewHolder>() {
     // 뷰 홀더에 데이터를 바인딩
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = memoList[position]
+        val currentTitle = currentItem.title
         val currentContent = currentItem.content
+        val currentCheck = currentItem.check
 
+        holder.binding.title.text = currentTitle
     }
 
     // 뷰 홀더의 개수 리턴

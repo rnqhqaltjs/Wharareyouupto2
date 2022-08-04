@@ -9,6 +9,7 @@ data class Memo(
     @PrimaryKey(autoGenerate = true)
     var id : Int = 0,
     val check : Boolean,
+    val title : String,
     val content : String,
     val year : Int,
     val month : Int,
