@@ -23,6 +23,7 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = memoList[position]
         val currentContent = currentItem.content
+        val currentCheck = currentItem.check
 
     }
 
