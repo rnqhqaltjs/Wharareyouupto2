@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/todocalendar"
-        android:name="com.example.wharareyouupto2.ui.todocalendar.ToDoCalendarFragment"
+        android:name="com.example.wharareyouupto2.ui.view.ToDoCalendarFragment"
         android:label="@string/todocalendar"
         tools:layout="@layout/fragment_todocalendar" />
 
     <fragment
         android:id="@+id/todolist"
-        android:name="com.example.wharareyouupto2.ui.todolist.ToDoListFragment"
+        android:name="com.example.wharareyouupto2.ui.view.ToDoListFragment"
         android:label="@string/todolist"
         tools:layout="@layout/fragment_todolist" />
 
     <fragment
         android:id="@+id/donelist"
-        android:name="com.example.wharareyouupto2.ui.donelist.DoneListFragment"
+        android:name="com.example.wharareyouupto2.ui.view.DoneListFragment"
         android:label="@string/donelist"
         tools:layout="@layout/fragment_donelist" />
 </navigation>
