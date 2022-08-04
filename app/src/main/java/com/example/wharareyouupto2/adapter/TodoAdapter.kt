@@ -23,9 +23,7 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = memoList[position]
         val currentContent = currentItem.content
-        val currentCheck = currentItem.check
 
-        holder.binding.memoCheckBox.text = currentContent
     }
 
     // 뷰 홀더의 개수 리턴
