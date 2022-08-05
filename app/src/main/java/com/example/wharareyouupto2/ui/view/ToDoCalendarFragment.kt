@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -13,9 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wharareyouupto2.adapter.TodoAdapter
 import com.example.wharareyouupto2.databinding.FragmentTodocalendarBinding
 import com.example.wharareyouupto2.model.Memo
+import com.example.wharareyouupto2.ui.dialog.MyCustomDialog
+import com.example.wharareyouupto2.ui.dialog.MyCustomDialogInterface
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
-class ToDoCalendarFragment : Fragment() {
+class ToDoCalendarFragment : Fragment(), MyCustomDialogInterface {
 
     private var _binding: FragmentTodocalendarBinding? = null
     private val binding get() = _binding!!
@@ -69,12 +72,32 @@ class ToDoCalendarFragment : Fragment() {
 
         binding.calendarDialogButton.setOnClickListener {
 
+            if(year == 0) {
+                Toast.makeText(activity, "날짜를 선택해주세요.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                onFabClicked()
+            }
+
 
         }
+    }
+
+    // Fab 클릭시 사용되는 함수
+    private fun onFabClicked(){
+        val myCustomDialog = MyCustomDialog(requireActivity(),this)
+        myCustomDialog.show()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onOkButtonClicked(title: String) {
+        // 선택된 날짜로 메모를 추가해줌
+        val memo = Memo(0,false, title, year, month, day)
+        memoViewModel.addMemo(memo)
+        Toast.makeText(activity, "추가", Toast.LENGTH_SHORT).show()
     }
 }
