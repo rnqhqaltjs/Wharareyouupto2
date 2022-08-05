@@ -1,14 +1,18 @@
 package com.example.wharareyouupto2.ui.view
 
+import android.graphics.Insets.add
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wharareyouupto2.adapter.TodoAdapter
 import com.example.wharareyouupto2.databinding.FragmentTodocalendarBinding
+import com.example.wharareyouupto2.model.Memo
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
 class ToDoCalendarFragment : Fragment() {
@@ -53,6 +57,18 @@ class ToDoCalendarFragment : Fragment() {
             this.year = date.year
             this.month = date.month
             this.day = date.day
+
+            // 해당 날짜 데이터를 불러옴 (currentData 변경)
+            memoViewModel.readDateData(this.year,this.month,this.day)
+        }
+
+        // 현재 날짜 데이터 리스트(currentData) 관찰하여 변경시 어댑터에 전달해줌
+        memoViewModel.currentData.observe(viewLifecycleOwner, Observer {
+            adapter.setData(it)
+        })
+
+        binding.calendarDialogButton.setOnClickListener {
+
 
         }
     }
