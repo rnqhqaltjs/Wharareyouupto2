@@ -57,12 +57,12 @@ class ToDoCalendarFragment : Fragment(), MyCustomDialogInterface {
 
         binding.calendarview.setOnDateChangedListener { widget, date, selected ->
 
-            this.year = date.year
-            this.month = date.month
-            this.day = date.day
+            year = date.year
+            month = date.month
+            day = date.day
 
             // 해당 날짜 데이터를 불러옴 (currentData 변경)
-            memoViewModel.readDateData(this.year,this.month,this.day)
+            memoViewModel.readDateData(year,month,day)
         }
 
         // 현재 날짜 데이터 리스트(currentData) 관찰하여 변경시 어댑터에 전달해줌
@@ -78,7 +78,6 @@ class ToDoCalendarFragment : Fragment(), MyCustomDialogInterface {
             else {
                 onFabClicked()
             }
-
 
         }
     }
@@ -99,5 +98,6 @@ class ToDoCalendarFragment : Fragment(), MyCustomDialogInterface {
         val memo = Memo(0,false, title, year, month, day)
         memoViewModel.addMemo(memo)
         Toast.makeText(activity, "추가", Toast.LENGTH_SHORT).show()
+
     }
 }

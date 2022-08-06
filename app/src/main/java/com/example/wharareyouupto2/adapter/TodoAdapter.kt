@@ -40,4 +40,9 @@ class TodoAdapter(memoViewModel: MemoViewModel) : RecyclerView.Adapter<TodoAdapt
         memoList = memo
         notifyDataSetChanged()
     }
+
+    // 아이템에 아이디를 설정해줌 (깜빡이는 현상방지)
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
 }
