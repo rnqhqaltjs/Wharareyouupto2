@@ -8,11 +8,9 @@ import com.example.wharareyouupto2.model.Memo
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
 
-class TodoAdapter(memoViewModel: MemoViewModel) : RecyclerView.Adapter<TodoAdapter.MyViewHolder>() {
+class TodoAdapter(private val memoViewModel: MemoViewModel) : RecyclerView.Adapter<TodoAdapter.MyViewHolder>() {
 
     private var memoList = emptyList<Memo>()
-
-    class MyViewHolder(val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     // 어떤 xml 으로 뷰 홀더를 생성할지 지정
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -22,17 +20,28 @@ class TodoAdapter(memoViewModel: MemoViewModel) : RecyclerView.Adapter<TodoAdapt
 
     // 뷰 홀더에 데이터를 바인딩
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = memoList[position]
-        val currentTitle = currentItem.title
-//        val currentContent = currentItem.content
-//        val currentCheck = currentItem.check
+        holder.bind(memoList[position])
 
-        holder.binding.title.text = currentTitle
     }
 
     // 뷰 홀더의 개수 리턴
     override fun getItemCount(): Int {
         return memoList.size
+    }
+
+    inner class MyViewHolder(private val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root){
+
+        fun bind(memo: Memo){
+
+            val currentItem = memoList[position]
+            val currentTitle = currentItem.title
+//        val currentContent = currentItem.content
+//        val currentCheck = currentItem.check
+
+            binding.title.text = currentTitle
+
+        }
+
     }
 
     // 메모 리스트 갱신
