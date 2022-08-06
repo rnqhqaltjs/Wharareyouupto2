@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 // 뷰모델은 DB에 직접 접근하지 않아야함. Repository 에서 데이터 통신.
 class MemoViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val readAllData : LiveData<List<Memo>>
+    val readAllData : LiveData<List<Memo>>
     private val readDoneData : LiveData<List<Memo>>
     private val repository : MemoRepository
 

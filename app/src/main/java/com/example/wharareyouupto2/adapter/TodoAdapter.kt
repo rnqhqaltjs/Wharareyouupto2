@@ -8,9 +8,9 @@ import com.example.wharareyouupto2.model.Memo
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
 
-class TodoAdapter(private val memoViewModel: MemoViewModel) : RecyclerView.Adapter<TodoAdapter.MyViewHolder>() {
+class TodoAdapter(private var memoList:List<Memo>, private val memoViewModel: MemoViewModel) : RecyclerView.Adapter<TodoAdapter.MyViewHolder>() {
 
-    private var memoList = emptyList<Memo>()
+
 
     // 어떤 xml 으로 뷰 홀더를 생성할지 지정
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -20,7 +20,7 @@ class TodoAdapter(private val memoViewModel: MemoViewModel) : RecyclerView.Adapt
 
     // 뷰 홀더에 데이터를 바인딩
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(memoList[position])
+        holder.bind(memoList[position],memoViewModel)
 
     }
 
@@ -31,14 +31,9 @@ class TodoAdapter(private val memoViewModel: MemoViewModel) : RecyclerView.Adapt
 
     inner class MyViewHolder(private val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(memo: Memo){
+        fun bind(memo: Memo, memoViewModel: MemoViewModel){
 
-            val currentItem = memoList[position]
-            val currentTitle = currentItem.title
-//        val currentContent = currentItem.content
-//        val currentCheck = currentItem.check
-
-            binding.title.text = currentTitle
+            binding.title.text = memo.title
 
         }
 
