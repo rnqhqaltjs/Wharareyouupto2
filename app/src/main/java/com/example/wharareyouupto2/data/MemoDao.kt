@@ -29,4 +29,8 @@ interface MemoDao {
     @Query("SELECT * FROM Memo WHERE `check` = 1 ORDER BY year DESC, month DESC, day DESC, id DESC")
     fun readDoneData() : Flow<List<Memo>>
 
+    // 날짜 정보를 입력받아 그 날짜에 해당하는 메모만 반환
+    @Query("SELECT * FROM Memo ORDER BY id DESC")
+    fun getAll() : List<Memo>
+
 }
