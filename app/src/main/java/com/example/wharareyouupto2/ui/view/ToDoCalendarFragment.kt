@@ -42,19 +42,14 @@ class ToDoCalendarFragment : Fragment(), MyCustomDialogInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        memodatabase = MemoDatabase.getDatabase(requireContext())!!
+
         // 아이템에 아이디를 설정해줌 (깜빡이는 현상방지)
         adapter.setHasStableIds(true)
 
         // 아이템을 가로로 하나씩 보여주고 어댑터 연결
         binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
         binding.recyclerView.adapter = adapter
-
-//        val memoViewModel = ViewModelProvider(this)[MemoViewModel::class.java]
-
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
 
         binding.calendarView.setOnDateChangedListener { widget, date, selected ->
 
@@ -69,15 +64,13 @@ class ToDoCalendarFragment : Fragment(), MyCustomDialogInterface {
         // 메모 데이터가 수정되었을 경우 날짜 데이터를 불러옴 (currentData 변경)
         memoViewModel.readAllData.observe(viewLifecycleOwner) {
             memoViewModel.readDateData(year, month, day)
+            memoViewModel.dotDecorator(requireContext(),binding.calendarView,memodatabase)
         }
 
         // 현재 날짜 데이터 리스트(currentData) 관찰하여 변경시 어댑터에 전달해줌
         memoViewModel.currentData.observe(viewLifecycleOwner) {
             adapter.setData(it)
-            memoViewModel.dotDecorator(requireContext(),binding.calendarView,memodatabase)
         }
-
-
 
         binding.fab.setOnClickListener {
 

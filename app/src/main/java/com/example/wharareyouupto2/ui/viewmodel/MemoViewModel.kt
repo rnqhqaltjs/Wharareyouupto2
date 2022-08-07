@@ -62,11 +62,12 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    //calendar
     fun dotDecorator(context: Context,calendar: MaterialCalendarView?, memoDatabase: MemoDatabase) {
         // 사전작업1. room에서 단일 일정 데이터 가져와서 표시해주기
         val dates = ArrayList<CalendarDay>()
 
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val scheduleList = memoDatabase.memoDao().getAll()
             if (scheduleList.isNotEmpty()) { // schedule이 있을 때만..
                 for (i in scheduleList.indices) {
@@ -74,8 +75,7 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
                     val dot_month = scheduleList[i].month
                     val dot_day = scheduleList[i].day
 
-
-                    dates.add(CalendarDay.from(dot_year, dot_month, dot_day))
+                    dates.add(CalendarDay(dot_year, dot_month, dot_day))
                 }
             }
         }
@@ -85,8 +85,7 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
             calendar!!.removeDecorators()
             calendar.invalidateDecorators()
             // 토, 일 색칠 + 오늘 날짜 표시
-            calendar.addDecorators(BoldDecorator(), SundayDecorator(), SaturdayDecorator(), MySelectorDecorator(context), TodayDecorator(context)
-            )
+            calendar.addDecorators(BoldDecorator(), SundayDecorator(), SaturdayDecorator(), MySelectorDecorator(context), TodayDecorator(context))
             if (dates.size > 0) {
                 calendar.addDecorator(EventDecorator(Color.BLACK, dates)) // 점 찍기
             }
