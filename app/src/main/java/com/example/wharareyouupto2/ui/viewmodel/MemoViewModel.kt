@@ -35,6 +35,7 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
         repository = MemoRepository(memoDao)
         readAllData = repository.readAllData.asLiveData()
         readDoneData = repository.readDoneData.asLiveData()
+
     }
 
     fun addMemo(memo : Memo){
