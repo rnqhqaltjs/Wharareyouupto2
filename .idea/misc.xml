@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Kim SeungWu/Documents/AndroidLab/Wharareyouupto2/app/src/main/res/drawable/bookmark.xml" value="0.1435" />
         <entry key="..\:/Users/Kim SeungWu/Documents/AndroidLab/Wharareyouupto2/app/src/main/res/drawable/calendar_background.xml" value="0.1435" />
         <entry key="..\:/Users/Kim SeungWu/Documents/AndroidLab/Wharareyouupto2/app/src/main/res/drawable/calendar_select_background.xml" value="0.1325" />
+        <entry key="..\:/Users/Kim SeungWu/Documents/AndroidLab/Wharareyouupto2/app/src/main/res/drawable/checkbox.xml" value="0.1435" />
         <entry key="..\:/Users/Kim SeungWu/Documents/AndroidLab/Wharareyouupto2/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Kim SeungWu/Documents/AndroidLab/Wharareyouupto2/app/src/main/res/layout/activity_todoadd.xml" value="0.13171225937183384" />
         <entry key="..\:/Users/Kim SeungWu/Documents/AndroidLab/Wharareyouupto2/app/src/main/res/layout/fragment_dashboard.xml" value="0.22146739130434784" />
         <entry key="..\:/Users/Kim SeungWu/Documents/AndroidLab/Wharareyouupto2/app/src/main/res/layout/fragment_donelist.xml" value="0.13171225937183384" />
         <entry key="..\:/Users/Kim SeungWu/Documents/AndroidLab/Wharareyouupto2/app/src/main/res/layout/fragment_home.xml" value="0.22146739130434784" />
@@ -14,6 +17,7 @@
         <entry key="..\:/Users/Kim SeungWu/Documents/AndroidLab/Wharareyouupto2/app/src/main/res/layout/layout_dialog.xml" value="0.2708333333333333" />
         <entry key="..\:/Users/Kim SeungWu/Documents/AndroidLab/Wharareyouupto2/app/src/main/res/layout/todo_item.xml" value="0.2708333333333333" />
         <entry key="..\:/Users/Kim SeungWu/Documents/AndroidLab/Wharareyouupto2/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/Kim SeungWu/Documents/AndroidLab/Wharareyouupto2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1435" />
       </map>
     </option>
   </component>

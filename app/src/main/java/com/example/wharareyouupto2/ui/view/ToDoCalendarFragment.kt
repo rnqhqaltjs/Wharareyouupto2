@@ -1,5 +1,6 @@
 package com.example.wharareyouupto2.ui.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wharareyouupto2.adapter.TodoAdapter
-import com.example.wharareyouupto2.data.MemoDao
 import com.example.wharareyouupto2.data.MemoDatabase
 import com.example.wharareyouupto2.databinding.FragmentTodocalendarBinding
 import com.example.wharareyouupto2.model.Memo
-import com.example.wharareyouupto2.ui.dialog.MyCustomDialog
-import com.example.wharareyouupto2.ui.dialog.MyCustomDialogInterface
+import com.example.wharareyouupto2.ui.activity.TodoaddActivityInterface
+import com.example.wharareyouupto2.ui.activity.TodoaddActivity
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
-class ToDoCalendarFragment : Fragment(), MyCustomDialogInterface {
+class ToDoCalendarFragment : Fragment(), TodoaddActivityInterface {
 
     private var _binding: FragmentTodocalendarBinding? = null
     private val binding get() = _binding!!
@@ -87,8 +87,8 @@ class ToDoCalendarFragment : Fragment(), MyCustomDialogInterface {
 
     // Fab 클릭시 사용되는 함수
     private fun onFabClicked(){
-        val myCustomDialog = MyCustomDialog(requireActivity(),this)
-        myCustomDialog.show()
+        val intent = Intent(requireContext(),TodoaddActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onDestroyView() {
