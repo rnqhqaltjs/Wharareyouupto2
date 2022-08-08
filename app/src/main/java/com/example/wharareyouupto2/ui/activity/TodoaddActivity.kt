@@ -8,13 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.wharareyouupto2.R
 import com.example.wharareyouupto2.databinding.ActivityTodoaddBinding
 
-class TodoaddActivity(myInterface: TodoaddActivityInterface) : AppCompatActivity() {
+class TodoaddActivity : AppCompatActivity() {
 
     // 액티비티에서 인터페이스를 받아옴
     private val binding: ActivityTodoaddBinding by lazy {
         ActivityTodoaddBinding.inflate(layoutInflater)
     }
-    private var todoaddActivityInterface: TodoaddActivityInterface = myInterface
+//    private var todoaddActivityInterface: TodoaddActivityInterface = myInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,7 @@ class TodoaddActivity(myInterface: TodoaddActivityInterface) : AppCompatActivity
             // 입력 창이 비어 있지 않을 때
             else{
                 // 메모를 추가해줌
-                todoaddActivityInterface.onOkButtonClicked(title)
+//                todoaddActivityInterface.onOkButtonClicked(title)
                 finish()
             }
         }
