@@ -1,4 +1,4 @@
-package com.example.wharareyouupto2.ui.activity
+package com.example.wharareyouupto2.ui.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

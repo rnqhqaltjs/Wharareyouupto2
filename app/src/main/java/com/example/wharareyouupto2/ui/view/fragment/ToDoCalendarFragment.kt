@@ -1,4 +1,4 @@
-package com.example.wharareyouupto2.ui.view
+package com.example.wharareyouupto2.ui.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,11 +13,10 @@ import com.example.wharareyouupto2.adapter.TodoAdapter
 import com.example.wharareyouupto2.data.MemoDatabase
 import com.example.wharareyouupto2.databinding.FragmentTodocalendarBinding
 import com.example.wharareyouupto2.model.Memo
-import com.example.wharareyouupto2.ui.activity.TodoaddActivityInterface
-import com.example.wharareyouupto2.ui.activity.TodoaddActivity
+import com.example.wharareyouupto2.ui.view.activity.TodoaddActivity
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
-class ToDoCalendarFragment : Fragment(), TodoaddActivityInterface {
+class ToDoCalendarFragment : Fragment() {
 
     private var _binding: FragmentTodocalendarBinding? = null
     private val binding get() = _binding!!
@@ -87,7 +86,10 @@ class ToDoCalendarFragment : Fragment(), TodoaddActivityInterface {
 
     // Fab 클릭시 사용되는 함수
     private fun onFabClicked(){
-        val intent = Intent(requireContext(),TodoaddActivity::class.java)
+        val intent = Intent(requireContext(), TodoaddActivity::class.java)
+        intent.putExtra("year",year)
+        intent.putExtra("month",month)
+        intent.putExtra("day",day)
         startActivity(intent)
     }
 
@@ -96,11 +98,4 @@ class ToDoCalendarFragment : Fragment(), TodoaddActivityInterface {
         _binding = null
     }
 
-    override fun onOkButtonClicked(title: String) {
-        // 선택된 날짜로 메모를 추가해줌
-        val memo = Memo(0,false, title, year, month, day)
-        memoViewModel.addMemo(memo)
-        Toast.makeText(activity, "추가", Toast.LENGTH_SHORT).show()
-
-    }
 }

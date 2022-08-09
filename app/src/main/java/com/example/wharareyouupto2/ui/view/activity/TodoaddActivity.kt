@@ -1,12 +1,14 @@
-package com.example.wharareyouupto2.ui.activity
+package com.example.wharareyouupto2.ui.view.activity
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.wharareyouupto2.R
+import androidx.fragment.app.viewModels
 import com.example.wharareyouupto2.databinding.ActivityTodoaddBinding
+import com.example.wharareyouupto2.model.Memo
+import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
 class TodoaddActivity : AppCompatActivity() {
 
@@ -14,32 +16,30 @@ class TodoaddActivity : AppCompatActivity() {
     private val binding: ActivityTodoaddBinding by lazy {
         ActivityTodoaddBinding.inflate(layoutInflater)
     }
-//    private var todoaddActivityInterface: TodoaddActivityInterface = myInterface
+    private val memoViewModel: MemoViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-//        // 배경 투명하게 바꿔줌
-//        window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val year = intent.getIntExtra("year",-1)
+        val month = intent.getIntExtra("month",-1)
+        val day = intent.getIntExtra("day",-1)
 
         binding.fab.setOnClickListener {
-            val title = binding.title.toString()
+            val title = binding.title.text.toString()
 
-            // 입력하지 않았을 때
-            if ( TextUtils.isEmpty(title)){
+            if (TextUtils.isEmpty(title)){
                 Toast.makeText(this, "메모를 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
 
-            // 입력 창이 비어 있지 않을 때
             else{
-                // 메모를 추가해줌
-//                todoaddActivityInterface.onOkButtonClicked(title)
+                val memo = Memo(0,false, title, year, month, day)
+                memoViewModel.addMemo(memo)
+                Toast.makeText(this, "추가", Toast.LENGTH_SHORT).show()
                 finish()
             }
         }
-//
-//        // 취소 버튼 클릭 시 종료
-//        cancelButton.setOnClickListener { dismiss()}
+
     }
 }

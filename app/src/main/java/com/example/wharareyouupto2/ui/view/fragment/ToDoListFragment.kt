@@ -1,4 +1,4 @@
-package com.example.wharareyouupto2.ui.view
+package com.example.wharareyouupto2.ui.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

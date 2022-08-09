@@ -1,4 +1,4 @@
-package com.example.wharareyouupto2
+package com.example.wharareyouupto2.ui.view.activity
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.wharareyouupto2.R
 import com.example.wharareyouupto2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
