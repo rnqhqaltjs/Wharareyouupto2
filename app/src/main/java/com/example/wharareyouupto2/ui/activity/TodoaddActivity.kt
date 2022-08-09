@@ -20,9 +20,6 @@ class TodoaddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.fab
-        val memoEditView : EditText = findViewById(R.id.title)
-
 //        // 배경 투명하게 바꿔줌
 //        window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
