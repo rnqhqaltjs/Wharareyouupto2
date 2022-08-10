@@ -29,7 +29,7 @@ class TodoaddActivity : AppCompatActivity() {
         binding.fab.setOnClickListener {
             val title = binding.title.text.toString()
 
-            if (TextUtils.isEmpty(title)){
+            if (title.isEmpty()){
                 Toast.makeText(this, "메모를 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
 
