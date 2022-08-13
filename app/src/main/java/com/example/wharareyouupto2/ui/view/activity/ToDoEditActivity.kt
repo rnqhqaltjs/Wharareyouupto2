@@ -1,20 +1,18 @@
 package com.example.wharareyouupto2.ui.view.activity
 
 import android.os.Bundle
-import android.text.TextUtils
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
-import com.example.wharareyouupto2.databinding.ActivityTodoaddBinding
+import com.example.wharareyouupto2.databinding.ActivityToDoEditBinding
 import com.example.wharareyouupto2.model.Memo
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
-class TodoaddActivity : AppCompatActivity() {
+class ToDoEditActivity : AppCompatActivity() {
 
     // 액티비티에서 인터페이스를 받아옴
-    private val binding: ActivityTodoaddBinding by lazy {
-        ActivityTodoaddBinding.inflate(layoutInflater)
+    private val binding: ActivityToDoEditBinding by lazy {
+        ActivityToDoEditBinding.inflate(layoutInflater)
     }
     private val memoViewModel: MemoViewModel by viewModels()
 

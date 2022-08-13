@@ -13,7 +13,7 @@ import com.example.wharareyouupto2.adapter.TodoAdapter
 import com.example.wharareyouupto2.data.MemoDatabase
 import com.example.wharareyouupto2.databinding.FragmentTodocalendarBinding
 import com.example.wharareyouupto2.model.Memo
-import com.example.wharareyouupto2.ui.view.activity.TodoaddActivity
+import com.example.wharareyouupto2.ui.view.activity.ToDoEditActivity
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
 class ToDoCalendarFragment : Fragment() {
@@ -86,7 +86,7 @@ class ToDoCalendarFragment : Fragment() {
 
     // Fab 클릭시 사용되는 함수
     private fun onFabClicked(){
-        val intent = Intent(requireContext(), TodoaddActivity::class.java)
+        val intent = Intent(requireContext(), ToDoEditActivity::class.java)
         intent.putExtra("year",year)
         intent.putExtra("month",month)
         intent.putExtra("day",day)
