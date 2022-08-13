@@ -22,22 +22,42 @@ class TodoaddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        val type = intent.getStringExtra("type")
+
         val year = intent.getIntExtra("year",-1)
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
 
+        if(type.equals("ADD")){
+
+            Toast.makeText(this, "추가", Toast.LENGTH_SHORT).show()
+
+        } else{
+            Toast.makeText(this, "수정", Toast.LENGTH_SHORT).show()
+        }
+
         binding.fab.setOnClickListener {
             val title = binding.title.text.toString()
 
-            if (title.isEmpty()){
-                Toast.makeText(this, "메모를 입력해주세요.", Toast.LENGTH_SHORT).show()
-            }
+            if(type.equals("ADD")) {
 
-            else{
-                val memo = Memo(0,false, title, year, month, day)
-                memoViewModel.addMemo(memo)
-                Toast.makeText(this, "추가", Toast.LENGTH_SHORT).show()
-                finish()
+                if (title.isEmpty()){
+
+                    Toast.makeText(this, "일정 이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
+
+                } else {
+
+                    val memo = Memo(0, false, title, year, month, day)
+                    memoViewModel.addMemo(memo)
+                    Toast.makeText(this, "추가", Toast.LENGTH_SHORT).show()
+                    finish()
+
+                }
+
+
+            } else {
+
+
             }
         }
 

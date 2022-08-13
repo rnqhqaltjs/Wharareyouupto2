@@ -90,6 +90,7 @@ class ToDoCalendarFragment : Fragment() {
         intent.putExtra("year",year)
         intent.putExtra("month",month)
         intent.putExtra("day",day)
+        intent.putExtra("type","ADD")
         startActivity(intent)
     }
 
