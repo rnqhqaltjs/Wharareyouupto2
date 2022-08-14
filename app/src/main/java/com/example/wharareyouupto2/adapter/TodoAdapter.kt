@@ -46,10 +46,10 @@ class TodoAdapter(val context: Context, private var memoList:List<Memo>, private
 //                intent.putExtra("image", memo.image)
 //                intent.putExtra("mintime", memo.mintime)
 //                intent.putExtra("maxtime", memo.maxtime)
-//                intent.putExtra("id", memo.id)
-//                intent.putExtra("year", memo.year)
-//                intent.putExtra("month", memo.month)
-//                intent.putExtra("day", memo.day)
+                intent.putExtra("id", memo.id)
+                intent.putExtra("year", memo.year)
+                intent.putExtra("month", memo.month)
+                intent.putExtra("day", memo.day)
                 context.startActivity(intent)
 
             }

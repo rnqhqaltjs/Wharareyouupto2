@@ -21,7 +21,7 @@ class ToDoEditActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val type = intent.getStringExtra("type")
-
+        val id = intent.getIntExtra("id",-1)
         val year = intent.getIntExtra("year",-1)
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
@@ -35,7 +35,9 @@ class ToDoEditActivity : AppCompatActivity() {
         }
 
         binding.fab.setOnClickListener {
+
             val title = binding.title.text.toString()
+            Toast.makeText(this, id.toString(), Toast.LENGTH_SHORT).show()
 
             if(type.equals("ADD")) {
 
@@ -55,6 +57,18 @@ class ToDoEditActivity : AppCompatActivity() {
 
             } else {
 
+                if (title.isEmpty()){
+
+                    Toast.makeText(this, "일정 이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
+
+                } else {
+
+                    val memo = Memo(id, false, title, year, month, day)
+                    memoViewModel.updateMemo(memo)
+                    Toast.makeText(this, "수정", Toast.LENGTH_SHORT).show()
+                    finish()
+
+                }
 
             }
         }
