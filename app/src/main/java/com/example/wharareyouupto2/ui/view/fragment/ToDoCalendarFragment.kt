@@ -22,7 +22,7 @@ class ToDoCalendarFragment : Fragment() {
     private val binding get() = _binding!!
     private val memoViewModel: MemoViewModel by viewModels() // 뷰모델 연결
     private val memoList : List<Memo> = listOf()
-    private val adapter : TodoAdapter by lazy { TodoAdapter(memoList,memoViewModel) } // 어댑터 선언
+    private val adapter : TodoAdapter by lazy { TodoAdapter(requireContext(),memoList,memoViewModel) } // 어댑터 선언
     private lateinit var memodatabase: MemoDatabase
 
     private var year : Int = 0
