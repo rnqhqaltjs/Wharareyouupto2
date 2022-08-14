@@ -1,5 +1,6 @@
 package com.example.wharareyouupto2.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +35,22 @@ class TodoAdapter(private var memoList:List<Memo>, private val memoViewModel: Me
         fun bind(memo: Memo, memoViewModel: MemoViewModel){
 
             binding.title.text = memo.title
+
+            itemView.setOnClickListener {
+
+                val intent = Intent(context, TodoinsideActivity::class.java)
+                intent.putExtra("title", memo.title)
+                intent.putExtra("content", memo.content)
+                intent.putExtra("image", memo.image)
+                intent.putExtra("mintime", memo.mintime)
+                intent.putExtra("maxtime", memo.maxtime)
+                intent.putExtra("id", memo.id)
+                intent.putExtra("year", memo.year)
+                intent.putExtra("month", memo.month)
+                intent.putExtra("day", memo.day)
+                context.startActivity(intent)
+
+            }
 
         }
 
