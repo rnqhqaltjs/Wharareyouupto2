@@ -15,7 +15,7 @@ class ToDoEditActivity : AppCompatActivity() {
     private val binding: ActivityToDoEditBinding by lazy {
         ActivityToDoEditBinding.inflate(layoutInflater)
     }
-    private val memoViewModel: EditViewModel by viewModels()
+    private val EditViewModel: EditViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,7 @@ class ToDoEditActivity : AppCompatActivity() {
                 } else {
 
                     val memo = Memo(0, false, title, year, month, day)
-                    memoViewModel.addMemo(memo)
+                    EditViewModel.addMemo(memo)
                     Toast.makeText(this, "추가", Toast.LENGTH_SHORT).show()
                     finish()
 
@@ -69,7 +69,7 @@ class ToDoEditActivity : AppCompatActivity() {
                 } else {
 
                     val memo = Memo(id, false, title, year, month, day)
-                    memoViewModel.updateMemo(memo)
+                    EditViewModel.updateMemo(memo)
                     Toast.makeText(this, "수정", Toast.LENGTH_SHORT).show()
                     finish()
 
