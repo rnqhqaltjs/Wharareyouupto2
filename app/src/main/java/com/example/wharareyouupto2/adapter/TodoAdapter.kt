@@ -13,8 +13,6 @@ import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
 class TodoAdapter(val context: Context, private var memoList:List<Memo>, private val memoViewModel: MemoViewModel) : RecyclerView.Adapter<TodoAdapter.MyViewHolder>() {
 
-
-
     // 어떤 xml 으로 뷰 홀더를 생성할지 지정
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = TodoItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)

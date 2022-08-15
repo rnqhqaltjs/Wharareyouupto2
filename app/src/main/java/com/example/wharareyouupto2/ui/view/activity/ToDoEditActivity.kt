@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wharareyouupto2.databinding.ActivityToDoEditBinding
 import com.example.wharareyouupto2.model.Memo
+import com.example.wharareyouupto2.ui.viewmodel.EditViewModel
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
 class ToDoEditActivity : AppCompatActivity() {
@@ -14,7 +15,7 @@ class ToDoEditActivity : AppCompatActivity() {
     private val binding: ActivityToDoEditBinding by lazy {
         ActivityToDoEditBinding.inflate(layoutInflater)
     }
-    private val memoViewModel: MemoViewModel by viewModels()
+    private val memoViewModel: EditViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
