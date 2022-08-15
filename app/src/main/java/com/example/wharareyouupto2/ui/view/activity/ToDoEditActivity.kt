@@ -31,7 +31,12 @@ class ToDoEditActivity : AppCompatActivity() {
             Toast.makeText(this, "추가", Toast.LENGTH_SHORT).show()
 
         } else{
+
+            val title = intent.getStringExtra("title").toString()
+            binding.title.setText(title)
+
             Toast.makeText(this, "수정", Toast.LENGTH_SHORT).show()
+
         }
 
         binding.fab.setOnClickListener {
