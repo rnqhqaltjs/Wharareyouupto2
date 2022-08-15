@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.example.wharareyouupto2.R
 import com.example.wharareyouupto2.databinding.ActivityToDoEditBinding
 import com.example.wharareyouupto2.databinding.ActivityToDoInsideBinding
+import com.example.wharareyouupto2.model.Memo
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
 class ToDoInsideActivity : AppCompatActivity() {
@@ -30,13 +31,13 @@ class ToDoInsideActivity : AppCompatActivity() {
 
         binding.title.text = title
 
-//        binding.deletefab.setOnClickListener {
-//
-//            memoViewModel.deleteMemo(id)
-//            Toast.makeText(this,"삭제 완료", Toast.LENGTH_SHORT).show()
-//            finish()
-//
-//        }
+        binding.deletefab.setOnClickListener {
+
+            memoViewModel.deleteMemo(Memo(id, false, title!!, year, month, day))
+            Toast.makeText(this,"삭제 완료", Toast.LENGTH_SHORT).show()
+            finish()
+
+        }
 
         binding.editfab.setOnClickListener {
 

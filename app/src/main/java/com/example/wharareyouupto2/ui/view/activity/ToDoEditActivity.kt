@@ -37,7 +37,6 @@ class ToDoEditActivity : AppCompatActivity() {
         binding.fab.setOnClickListener {
 
             val title = binding.title.text.toString()
-            Toast.makeText(this, id.toString(), Toast.LENGTH_SHORT).show()
 
             if(type.equals("ADD")) {
 
