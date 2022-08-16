@@ -10,6 +10,7 @@ import com.example.wharareyouupto2.R
 import com.example.wharareyouupto2.databinding.ActivityToDoEditBinding
 import com.example.wharareyouupto2.databinding.ActivityToDoInsideBinding
 import com.example.wharareyouupto2.model.Memo
+import com.example.wharareyouupto2.ui.viewmodel.InsideViewModel
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
 class ToDoInsideActivity : AppCompatActivity() {
@@ -17,12 +18,12 @@ class ToDoInsideActivity : AppCompatActivity() {
     private val binding: ActivityToDoInsideBinding by lazy {
         ActivityToDoInsideBinding.inflate(layoutInflater)
     }
-    private val memoViewModel: MemoViewModel by viewModels() // 뷰모델 연결
+    private val InsideViewModel: InsideViewModel by viewModels() // 뷰모델 연결
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(binding.root)
+
         val id = intent.getIntExtra("id",-1)
         val title = intent.getStringExtra("title")
         val year = intent.getIntExtra("year",-1)
@@ -33,7 +34,7 @@ class ToDoInsideActivity : AppCompatActivity() {
 
         binding.deletefab.setOnClickListener {
 
-            memoViewModel.deleteMemo(Memo(id, false, title!!, year, month, day))
+            InsideViewModel.deleteMemo(Memo(id, false, title!!, year, month, day))
             Toast.makeText(this,"삭제 완료", Toast.LENGTH_SHORT).show()
             finish()
 

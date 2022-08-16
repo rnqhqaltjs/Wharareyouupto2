@@ -76,7 +76,7 @@ class ToDoEditActivity : AppCompatActivity() {
                 }
 
             }
-            
+
         }
 
     }
