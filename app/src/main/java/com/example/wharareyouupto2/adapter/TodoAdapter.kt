@@ -2,6 +2,7 @@ package com.example.wharareyouupto2.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,10 +10,9 @@ import com.example.wharareyouupto2.databinding.TodoItemBinding
 import com.example.wharareyouupto2.model.Memo
 import com.example.wharareyouupto2.ui.view.activity.ToDoInsideActivity
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
-import com.example.wharareyouupto2.ui.viewmodel.ToDoCalendarViewModel
 
 
-class TodoAdapter(val context: Context, private var memoList:List<Memo>, private val ToDoCalendarViewModel: ToDoCalendarViewModel) : RecyclerView.Adapter<TodoAdapter.MyViewHolder>() {
+class TodoAdapter(val context: Context, private var memoList:List<Memo>, private val memoViewModel: MemoViewModel) : RecyclerView.Adapter<TodoAdapter.MyViewHolder>() {
 
     // 어떤 xml 으로 뷰 홀더를 생성할지 지정
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -22,7 +22,7 @@ class TodoAdapter(val context: Context, private var memoList:List<Memo>, private
 
     // 뷰 홀더에 데이터를 바인딩
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(memoList[position],ToDoCalendarViewModel)
+        holder.bind(memoList[position],memoViewModel)
 
     }
 
@@ -33,7 +33,9 @@ class TodoAdapter(val context: Context, private var memoList:List<Memo>, private
 
     inner class MyViewHolder(private val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(memo: Memo, ToDoCalendarViewModel: ToDoCalendarViewModel){
+
+        fun bind(memo: Memo, memoViewModel: MemoViewModel) {
+            binding.memo = memo
 
             binding.title.text = memo.title
 
@@ -53,6 +55,28 @@ class TodoAdapter(val context: Context, private var memoList:List<Memo>, private
 
             }
 
+            // 체크 리스너 초기화 해줘 중복 오류 방지
+            binding.checkbox.setOnCheckedChangeListener(null)
+
+            binding.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
+
+                if (isChecked) {
+
+                    binding.title.paintFlags = binding.title.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    val memo = Memo(memo.id, true, memo.title,
+                        memo.year, memo.month, memo.day)
+                    memoViewModel.updateMemo(memo)
+
+                } else {
+
+                    binding.title.paintFlags = binding.title.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                    val memo = Memo(memo.id, false, memo.title,
+                        memo.year, memo.month, memo.day)
+                    memoViewModel.updateMemo(memo)
+
+                }
+
+            }
         }
 
     }
