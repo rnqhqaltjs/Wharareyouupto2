@@ -6,7 +6,7 @@
     <data>
         <variable
             name="memo"
-            type="com.example.wharareyouupto2.model.Memo" />
+            type="com.example.wharareyouupto2.data.model.Memo" />
     </data>
 
     <LinearLayout

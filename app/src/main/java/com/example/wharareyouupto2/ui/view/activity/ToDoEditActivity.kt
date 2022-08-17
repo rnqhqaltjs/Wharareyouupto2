@@ -5,9 +5,8 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wharareyouupto2.databinding.ActivityToDoEditBinding
-import com.example.wharareyouupto2.model.Memo
+import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.ui.viewmodel.EditViewModel
-import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
 class ToDoEditActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.example.wharareyouupto2.adapter
+package com.example.wharareyouupto2.ui.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wharareyouupto2.databinding.TodoItemBinding
-import com.example.wharareyouupto2.model.Memo
+import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.ui.view.activity.ToDoInsideActivity
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
@@ -42,12 +42,12 @@ class TodoAdapter(val context: Context, private var memoList:List<Memo>, private
             itemView.setOnClickListener {
 
                 val intent = Intent(context, ToDoInsideActivity::class.java)
+                intent.putExtra("id", memo.id)
                 intent.putExtra("title", memo.title)
 //                intent.putExtra("content", memo.content)
 //                intent.putExtra("image", memo.image)
 //                intent.putExtra("mintime", memo.mintime)
 //                intent.putExtra("maxtime", memo.maxtime)
-                intent.putExtra("id", memo.id)
                 intent.putExtra("year", memo.year)
                 intent.putExtra("month", memo.month)
                 intent.putExtra("day", memo.day)

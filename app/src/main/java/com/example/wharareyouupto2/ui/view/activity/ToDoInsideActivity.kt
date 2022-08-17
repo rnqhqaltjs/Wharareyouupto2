@@ -5,13 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
-import com.example.wharareyouupto2.R
-import com.example.wharareyouupto2.databinding.ActivityToDoEditBinding
 import com.example.wharareyouupto2.databinding.ActivityToDoInsideBinding
-import com.example.wharareyouupto2.model.Memo
+import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.ui.viewmodel.InsideViewModel
-import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
 class ToDoInsideActivity : AppCompatActivity() {
 

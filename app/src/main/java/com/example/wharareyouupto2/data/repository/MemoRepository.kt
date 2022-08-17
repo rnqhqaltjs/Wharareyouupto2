@@ -1,7 +1,7 @@
-package com.example.wharareyouupto2.repository
+package com.example.wharareyouupto2.data.repository
 
-import com.example.wharareyouupto2.data.MemoDao
-import com.example.wharareyouupto2.model.Memo
+import com.example.wharareyouupto2.data.db.MemoDao
+import com.example.wharareyouupto2.data.model.Memo
 import kotlinx.coroutines.flow.Flow
 
 // 앱에서 사용하는 데이터와 그 데이터 통신을 하는 역할

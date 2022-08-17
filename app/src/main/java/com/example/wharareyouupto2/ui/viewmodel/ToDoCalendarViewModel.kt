@@ -7,9 +7,9 @@ import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.*
 import com.example.wharareyouupto2.CalendarDecorator.*
-import com.example.wharareyouupto2.data.MemoDatabase
-import com.example.wharareyouupto2.model.Memo
-import com.example.wharareyouupto2.repository.MemoRepository
+import com.example.wharareyouupto2.data.db.MemoDatabase
+import com.example.wharareyouupto2.data.model.Memo
+import com.example.wharareyouupto2.data.repository.MemoRepository
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import kotlinx.coroutines.Dispatchers

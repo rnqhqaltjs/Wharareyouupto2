@@ -9,10 +9,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.wharareyouupto2.adapter.TodoAdapter
-import com.example.wharareyouupto2.data.MemoDatabase
+import com.example.wharareyouupto2.ui.adapter.TodoAdapter
+import com.example.wharareyouupto2.data.db.MemoDatabase
 import com.example.wharareyouupto2.databinding.FragmentTodocalendarBinding
-import com.example.wharareyouupto2.model.Memo
+import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.ui.view.activity.ToDoEditActivity
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
@@ -44,7 +44,9 @@ class ToDoCalendarFragment : Fragment() {
         memodatabase = MemoDatabase.getDatabase(requireContext())!!
 
         // 아이템에 아이디를 설정해줌 (깜빡이는 현상방지)
-        adapter.setHasStableIds(true)
+        if (!adapter.hasObservers()) {
+            adapter.setHasStableIds(true)
+        }
 
         // 아이템을 가로로 하나씩 보여주고 어댑터 연결
         binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)

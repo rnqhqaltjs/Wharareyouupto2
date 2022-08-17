@@ -6,14 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.FragmentTodolistBinding
+import com.example.wharareyouupto2.ui.adapter.TodoAdapter
+import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 import com.example.wharareyouupto2.ui.viewmodel.ToDoListViewModel
 
 class ToDoListFragment : Fragment() {
 
     private var _binding: FragmentTodolistBinding? = null
     private val binding get() = _binding!!
+    private val memoList : List<Memo> = listOf()
+    private val adapter : TodoAdapter by lazy { TodoAdapter(requireContext(),memoList,memoViewModel) } // 어댑터 선언
+    private val memoViewModel: MemoViewModel by viewModels() // 뷰모델 연결
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,11 +36,17 @@ class ToDoListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dashboardViewModel = ViewModelProvider(this)[ToDoListViewModel::class.java]
+        // 아이템에 아이디를 설정해줌 (깜빡이는 현상방지)
+        if (!adapter.hasObservers()) {
+            adapter.setHasStableIds(true)
+        }
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        // 아이템을 가로로 하나씩 보여주고 어댑터 연결
+        binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
+        binding.recyclerView.adapter = adapter
+
+        memoViewModel.readAllData.observe(viewLifecycleOwner) {
+            adapter.setData(it)
         }
 
     }

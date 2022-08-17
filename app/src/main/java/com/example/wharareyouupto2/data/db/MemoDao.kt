@@ -1,7 +1,7 @@
-package com.example.wharareyouupto2.data
+package com.example.wharareyouupto2.data.db
 
 import androidx.room.*
-import com.example.wharareyouupto2.model.Memo
+import com.example.wharareyouupto2.data.model.Memo
 import kotlinx.coroutines.flow.Flow
 
 @Dao

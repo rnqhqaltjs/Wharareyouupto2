@@ -7,22 +7,20 @@ import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.*
 import com.example.wharareyouupto2.CalendarDecorator.*
-import com.example.wharareyouupto2.data.MemoDatabase
-import com.example.wharareyouupto2.model.Memo
-import com.example.wharareyouupto2.repository.MemoRepository
+import com.example.wharareyouupto2.data.db.MemoDatabase
+import com.example.wharareyouupto2.data.model.Memo
+import com.example.wharareyouupto2.data.repository.MemoRepository
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.time.LocalDate
 
 
 // 뷰모델은 DB에 직접 접근하지 않아야함. Repository 에서 데이터 통신.
 class MemoViewModel(application: Application) : AndroidViewModel(application) {
 
     val readAllData : LiveData<List<Memo>>
-    private val readDoneData : LiveData<List<Memo>>
+    val readDoneData : LiveData<List<Memo>>
     private val repository : MemoRepository
 
     // get set
