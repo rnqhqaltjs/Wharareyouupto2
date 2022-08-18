@@ -1,5 +1,6 @@
 package com.example.wharareyouupto2.ui.view.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +17,7 @@ class ToDoInsideActivity : AppCompatActivity() {
     }
     private val InsideViewModel: InsideViewModel by viewModels() // 뷰모델 연결
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -27,6 +29,9 @@ class ToDoInsideActivity : AppCompatActivity() {
         val day = intent.getIntExtra("day",-1)
 
         binding.title.text = title
+        binding.year.text = year.toString() + "년"
+        binding.month.text = (month+1).toString() +"월"
+        binding.day.text = day.toString()+ "일"
 
         binding.deletefab.setOnClickListener {
 

@@ -30,7 +30,6 @@ class ToDoListFragment : Fragment() {
     private val memoViewModel: MemoViewModel by viewModels() // 뷰모델 연결
 
     private val calendar = Calendar.getInstance()
-
     private val currentYear = calendar.get(Calendar.YEAR)
     private val currentMonth = calendar.get(Calendar.MONTH)
     private val currentDate = calendar.get(Calendar.DATE)
