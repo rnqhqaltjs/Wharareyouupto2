@@ -15,6 +15,7 @@ import com.example.wharareyouupto2.databinding.FragmentTodocalendarBinding
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.ui.view.activity.ToDoEditActivity
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
+import java.util.*
 
 class ToDoCalendarFragment : Fragment() {
 
@@ -28,6 +29,12 @@ class ToDoCalendarFragment : Fragment() {
     private var year : Int = 0
     private var month : Int = 0
     private var day : Int = 0
+
+    private val calendar = Calendar.getInstance()
+
+    private val currentYear = calendar.get(Calendar.YEAR)
+    private val currentMonth = calendar.get(Calendar.MONTH)
+    private val currentDate = calendar.get(Calendar.DATE)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,6 +54,8 @@ class ToDoCalendarFragment : Fragment() {
         if (!adapter.hasObservers()) {
             adapter.setHasStableIds(true)
         }
+
+        memoViewModel.readDateData(currentYear,currentMonth,currentDate)
 
         // 아이템을 가로로 하나씩 보여주고 어댑터 연결
         binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
