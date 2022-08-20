@@ -1,4 +1,4 @@
-package com.example.wharareyouupto2.CalendarDecorator
+package com.example.wharareyouupto2.util.CalendarDecorator
 
 import android.graphics.Color
 import android.graphics.Typeface

@@ -1,4 +1,4 @@
-package com.example.wharareyouupto2.CalendarDecorator
+package com.example.wharareyouupto2.util.CalendarDecorator
 
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator

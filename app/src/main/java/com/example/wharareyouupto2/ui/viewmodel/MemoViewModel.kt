@@ -6,7 +6,7 @@ import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.*
-import com.example.wharareyouupto2.CalendarDecorator.*
+import com.example.wharareyouupto2.util.CalendarDecorator.*
 import com.example.wharareyouupto2.data.db.MemoDatabase
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.data.repository.MemoRepository
