@@ -20,6 +20,10 @@ class ToDoEditActivity : AppCompatActivity() {
     }
     private val EditViewModel: EditViewModel by viewModels()
 
+    private val cal = Calendar.getInstance()
+    private var hour = 0
+    private var minute = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -34,10 +38,16 @@ class ToDoEditActivity : AppCompatActivity() {
             getMinimumTime(this)
         }
 
-        if(type.equals("ADD")){
+        binding.maximumtime.setOnClickListener {
+            getMaximumTime(this)
+        }
 
-            binding.minimumtime.text = SimpleDateFormat("HH:mm",Locale.KOREA).format(System.currentTimeMillis())
-            binding.maximumtime.text = SimpleDateFormat("HH:mm",Locale.KOREA).format(System.currentTimeMillis()+ 3600000)
+        if(type.equals("ADD")){
+            hour = cal.get(Calendar.HOUR_OF_DAY)
+            minute = cal.get(Calendar.MINUTE)
+
+            binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",hour,minute)
+            binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",hour,minute)
 
             Toast.makeText(this, "추가", Toast.LENGTH_SHORT).show()
 
@@ -93,32 +103,28 @@ class ToDoEditActivity : AppCompatActivity() {
 
     fun getMinimumTime(context: Context){
 
-        val cal = Calendar.getInstance()
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
+            hour = selectedHour
+            minute = selectedMinute
 
-        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-            cal.set(Calendar.HOUR_OF_DAY, hour)
-            cal.set(Calendar.MINUTE, minute)
-
-            binding.minimumtime.text = SimpleDateFormat("HH:mm", Locale.KOREA).format(cal.time)
-            binding.maximumtime.text = SimpleDateFormat("HH:mm", Locale.KOREA).format(cal.time)
+            binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",hour,minute)
+            binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",hour,minute)
         }
 
-        TimePickerDialog(context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), false).show()
+        TimePickerDialog(context, timeSetListener, hour, minute, true).show()
 
     }
 
     fun getMaximumTime(context: Context){
 
-        val cal = Calendar.getInstance()
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
+            hour = selectedHour
+            minute = selectedMinute
 
-        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-            cal.set(Calendar.HOUR_OF_DAY, hour)
-            cal.set(Calendar.MINUTE, minute)
-
-            binding.maximumtime.text = SimpleDateFormat("hh:mm a", Locale.KOREA).format(cal.time)
+            binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",hour,minute)
         }
 
-        TimePickerDialog(context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY)+1, cal.get(Calendar.MINUTE), false).show()
+        TimePickerDialog(context, timeSetListener, hour, minute, true).show()
 
     }
 }
