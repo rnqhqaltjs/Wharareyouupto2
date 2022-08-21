@@ -44,7 +44,7 @@ class TodoAdapter(val context: Context, private var memoList:List<Memo>, private
                 val intent = Intent(context, ToDoInsideActivity::class.java)
                 intent.putExtra("id", memo.id)
                 intent.putExtra("title", memo.title)
-//                intent.putExtra("content", memo.content)
+                intent.putExtra("content", memo.content)
 //                intent.putExtra("image", memo.image)
 //                intent.putExtra("mintime", memo.mintime)
 //                intent.putExtra("maxtime", memo.maxtime)
@@ -63,15 +63,13 @@ class TodoAdapter(val context: Context, private var memoList:List<Memo>, private
                 if (isChecked) {
 
                     binding.title.paintFlags = binding.title.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                    val memo = Memo(memo.id, true, memo.title,
-                        memo.year, memo.month, memo.day)
+                    val memo = Memo(memo.id, true, memo.title, memo.content, memo.year, memo.month, memo.day)
                     memoViewModel.updateMemo(memo)
 
                 } else {
 
                     binding.title.paintFlags = binding.title.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-                    val memo = Memo(memo.id, false, memo.title,
-                        memo.year, memo.month, memo.day)
+                    val memo = Memo(memo.id, false, memo.title, memo.content, memo.year, memo.month, memo.day)
                     memoViewModel.updateMemo(memo)
 
                 }

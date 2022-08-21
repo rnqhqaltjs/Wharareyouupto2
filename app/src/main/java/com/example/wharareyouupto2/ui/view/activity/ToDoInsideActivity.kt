@@ -24,18 +24,20 @@ class ToDoInsideActivity : AppCompatActivity() {
 
         val id = intent.getIntExtra("id",-1)
         val title = intent.getStringExtra("title")
+        val content = intent.getStringExtra("content")
         val year = intent.getIntExtra("year",-1)
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
 
         binding.title.text = title
+        binding.content.text = content
         binding.year.text = year.toString() + "년"
         binding.month.text = (month+1).toString() +"월"
         binding.day.text = day.toString()+ "일"
 
         binding.deletefab.setOnClickListener {
 
-            InsideViewModel.deleteMemo(Memo(id, false, title!!, year, month, day))
+            InsideViewModel.deleteMemo(Memo(id, false, title!!, content, year, month, day))
             Toast.makeText(this,"삭제 완료", Toast.LENGTH_SHORT).show()
             finish()
 
@@ -46,7 +48,7 @@ class ToDoInsideActivity : AppCompatActivity() {
             val intent = Intent(this,ToDoEditActivity::class.java)
             intent.putExtra("id",id)
             intent.putExtra("title",title)
-//            intent.putExtra("content",binding.content.text)
+            intent.putExtra("content",binding.content.text)
 //            intent.putExtra("image",image)
 //            intent.putExtra("mintime",binding.mintime.text)
 //            intent.putExtra("maxtime",binding.maxtime.text)

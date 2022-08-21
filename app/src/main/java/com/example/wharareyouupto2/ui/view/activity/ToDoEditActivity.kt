@@ -54,7 +54,9 @@ class ToDoEditActivity : AppCompatActivity() {
         } else{
 
             val title = intent.getStringExtra("title")
+            val content = intent.getStringExtra("content")
             binding.title.setText(title)
+            binding.content.setText(content)
 
             Toast.makeText(this, "수정", Toast.LENGTH_SHORT).show()
 
@@ -63,6 +65,7 @@ class ToDoEditActivity : AppCompatActivity() {
         binding.fab.setOnClickListener {
 
             val title = binding.title.text.toString()
+            val content = binding.content.text.toString()
 
             if(type.equals("ADD")) {
 
@@ -72,7 +75,7 @@ class ToDoEditActivity : AppCompatActivity() {
 
                 } else {
 
-                    val memo = Memo(0, false, title, year, month, day)
+                    val memo = Memo(0, false, title, content, year, month, day)
                     EditViewModel.addMemo(memo)
                     Toast.makeText(this, "추가", Toast.LENGTH_SHORT).show()
                     finish()
@@ -88,7 +91,7 @@ class ToDoEditActivity : AppCompatActivity() {
 
                 } else {
 
-                    val memo = Memo(id, false, title, year, month, day)
+                    val memo = Memo(id, false, title, content, year, month, day)
                     EditViewModel.updateMemo(memo)
                     Toast.makeText(this, "수정", Toast.LENGTH_SHORT).show()
                     finish()
