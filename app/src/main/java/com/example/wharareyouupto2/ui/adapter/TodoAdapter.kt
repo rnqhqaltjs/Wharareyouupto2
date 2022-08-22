@@ -35,7 +35,13 @@ class TodoAdapter(val context: Context, private var memoList:List<Memo>, private
 
         fun bind(memo: Memo, memoViewModel: MemoViewModel) {
 
+            binding.memo = memo
+
             binding.title.text = memo.title
+            binding.minhour.text = memo.minhour.toString()
+            binding.maxhour.text = memo.maxhour.toString()
+            binding.minminute.text = memo.minminute.toString()
+            binding.maxminute.text = memo.maxminute.toString()
 
             itemView.setOnClickListener {
 
