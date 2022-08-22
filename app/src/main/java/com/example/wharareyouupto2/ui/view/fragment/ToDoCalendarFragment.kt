@@ -89,12 +89,13 @@ class ToDoCalendarFragment : Fragment() {
 
     // Fab 클릭시 사용되는 함수
     private fun onFabClicked(){
-        val intent = Intent(requireContext(), ToDoEditActivity::class.java)
-        intent.putExtra("year",year)
-        intent.putExtra("month",month)
-        intent.putExtra("day",day)
-        intent.putExtra("type","ADD")
-        startActivity(intent)
+        Intent(requireContext(), ToDoEditActivity::class.java).apply{
+            putExtra("year",year)
+            putExtra("month",month)
+            putExtra("day",day)
+            putExtra("type","ADD")
+            startActivity(this)
+        }
     }
 
     override fun onDestroyView() {

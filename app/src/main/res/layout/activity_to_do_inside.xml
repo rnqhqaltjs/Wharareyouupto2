@@ -108,14 +108,31 @@
 
 
                     <TextView
-                        android:id="@+id/mintime"
+                        android:id="@+id/minhour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
+                        android:text="hour"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text=":"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/minminute"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_marginEnd="5dp"
-                        android:text="mintime"
+                        android:text="minute"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -129,14 +146,32 @@
                         android:textColor="@color/white" />
 
                     <TextView
-                        android:id="@+id/maxtime"
+                        android:id="@+id/maxhour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:text="maxtime"
+                        android:text="hour"
                         android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text=":"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/maxminute"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="minute"
+                        android:textColor="@color/white" />
+
                 </LinearLayout>
             </LinearLayout>
 

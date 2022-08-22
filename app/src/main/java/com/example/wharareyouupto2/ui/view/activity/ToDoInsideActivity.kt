@@ -25,19 +25,27 @@ class ToDoInsideActivity : AppCompatActivity() {
         val id = intent.getIntExtra("id",-1)
         val title = intent.getStringExtra("title")
         val content = intent.getStringExtra("content")
+        val minhour = intent.getIntExtra("minhour", -1)
+        val maxhour = intent.getIntExtra("maxhour", -1)
+        val minminute = intent.getIntExtra("minminute", -1)
+        val maxminute = intent.getIntExtra("maxminute", -1)
         val year = intent.getIntExtra("year",-1)
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
 
         binding.title.text = title
         binding.content.text = content
+        binding.minhour.text = minhour.toString()
+        binding.maxhour.text = maxhour.toString()
+        binding.minminute.text = minminute.toString()
+        binding.maxminute.text = maxminute.toString()
         binding.year.text = year.toString() + "년"
         binding.month.text = (month+1).toString() +"월"
         binding.day.text = day.toString()+ "일"
 
         binding.deletefab.setOnClickListener {
 
-            InsideViewModel.deleteMemo(Memo(id, false, title!!, content, year, month, day))
+            InsideViewModel.deleteMemo(Memo(id, false, title!!, content,minhour,maxhour, minminute, maxminute, year, month, day))
             Toast.makeText(this,"삭제 완료", Toast.LENGTH_SHORT).show()
             finish()
 
@@ -45,18 +53,21 @@ class ToDoInsideActivity : AppCompatActivity() {
 
         binding.editfab.setOnClickListener {
 
-            val intent = Intent(this,ToDoEditActivity::class.java)
-            intent.putExtra("id",id)
-            intent.putExtra("title",title)
-            intent.putExtra("content",binding.content.text)
+            Intent(this,ToDoEditActivity::class.java).apply{
+                putExtra("id",id)
+                putExtra("title",title)
+                putExtra("content",content)
 //            intent.putExtra("image",image)
-//            intent.putExtra("mintime",binding.mintime.text)
-//            intent.putExtra("maxtime",binding.maxtime.text)
-            intent.putExtra("year", year)
-            intent.putExtra("month", month)
-            intent.putExtra("day", day)
+                putExtra("minhour",minhour)
+                putExtra("maxhour",maxhour)
+                putExtra("minminute",minminute)
+                putExtra("maxminute",maxminute)
+                putExtra("year", year)
+                putExtra("month", month)
+                putExtra("day", day)
+                startActivity(this)
+            }
 
-            startActivity(intent)
             finish()
 
         }

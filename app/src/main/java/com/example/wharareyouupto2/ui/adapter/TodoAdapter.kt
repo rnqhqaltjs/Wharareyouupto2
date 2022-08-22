@@ -33,25 +33,27 @@ class TodoAdapter(val context: Context, private var memoList:List<Memo>, private
 
     inner class MyViewHolder(private val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root){
 
-
         fun bind(memo: Memo, memoViewModel: MemoViewModel) {
-            binding.memo = memo
 
             binding.title.text = memo.title
 
             itemView.setOnClickListener {
 
-                val intent = Intent(context, ToDoInsideActivity::class.java)
-                intent.putExtra("id", memo.id)
-                intent.putExtra("title", memo.title)
-                intent.putExtra("content", memo.content)
-//                intent.putExtra("image", memo.image)
-//                intent.putExtra("mintime", memo.mintime)
-//                intent.putExtra("maxtime", memo.maxtime)
-                intent.putExtra("year", memo.year)
-                intent.putExtra("month", memo.month)
-                intent.putExtra("day", memo.day)
-                context.startActivity(intent)
+                Intent(context, ToDoInsideActivity::class.java).apply{
+                    putExtra("id", memo.id)
+                    putExtra("title", memo.title)
+                    putExtra("content", memo.content)
+//                putExtra("image", memo.image)
+                    putExtra("minhour", memo.minhour)
+                    putExtra("maxhour", memo.maxhour)
+                    putExtra("minminute", memo.minminute)
+                    putExtra("maxminute", memo.maxminute)
+                    putExtra("year", memo.year)
+                    putExtra("month", memo.month)
+                    putExtra("day", memo.day)
+                    context.startActivity(this)
+
+                }
 
             }
 
@@ -63,13 +65,13 @@ class TodoAdapter(val context: Context, private var memoList:List<Memo>, private
                 if (isChecked) {
 
                     binding.title.paintFlags = binding.title.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                    val memo = Memo(memo.id, true, memo.title, memo.content, memo.year, memo.month, memo.day)
+                    val memo = Memo(memo.id, true, memo.title, memo.content, memo.minhour, memo.maxhour, memo.minminute, memo.maxminute, memo.year, memo.month, memo.day)
                     memoViewModel.updateMemo(memo)
 
                 } else {
 
                     binding.title.paintFlags = binding.title.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-                    val memo = Memo(memo.id, false, memo.title, memo.content, memo.year, memo.month, memo.day)
+                    val memo = Memo(memo.id, false, memo.title, memo.content, memo.minhour, memo.maxhour, memo.minminute, memo.maxminute, memo.year, memo.month, memo.day)
                     memoViewModel.updateMemo(memo)
 
                 }

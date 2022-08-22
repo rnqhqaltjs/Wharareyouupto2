@@ -21,18 +21,26 @@ class ToDoEditActivity : AppCompatActivity() {
     private val EditViewModel: EditViewModel by viewModels()
 
     private val cal = Calendar.getInstance()
-    private var hour = 0
-    private var minute = 0
+    private var minhour = cal.get(Calendar.HOUR_OF_DAY)
+    private var maxhour = cal.get(Calendar.HOUR_OF_DAY)
+    private var minminute = cal.get(Calendar.MINUTE)
+    private var maxminute = cal.get(Calendar.MINUTE)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         val type = intent.getStringExtra("type")
-        val id = intent.getIntExtra("id",-1)
+        val etitle = intent.getStringExtra("title")
+        val econtent = intent.getStringExtra("content")
+        val eminhour = intent.getIntExtra("minhour",-1)
+        val emaxhour = intent.getIntExtra("maxhour",-1)
+        val eminminute = intent.getIntExtra("minminute",-1)
+        val emaxminute = intent.getIntExtra("maxminute",-1)
         val year = intent.getIntExtra("year",-1)
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
+
 
         binding.minimumtime.setOnClickListener {
             getMinimumTime(this)
@@ -43,20 +51,18 @@ class ToDoEditActivity : AppCompatActivity() {
         }
 
         if(type.equals("ADD")){
-            hour = cal.get(Calendar.HOUR_OF_DAY)
-            minute = cal.get(Calendar.MINUTE)
 
-            binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",hour,minute)
-            binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",hour,minute)
+            binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
+            binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",maxhour,maxminute)
 
             Toast.makeText(this, "추가", Toast.LENGTH_SHORT).show()
 
         } else{
 
-            val title = intent.getStringExtra("title")
-            val content = intent.getStringExtra("content")
-            binding.title.setText(title)
-            binding.content.setText(content)
+            binding.title.setText(etitle)
+            binding.content.setText(econtent)
+            binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",eminhour,eminminute)
+            binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",emaxhour,emaxminute)
 
             Toast.makeText(this, "수정", Toast.LENGTH_SHORT).show()
 
@@ -75,7 +81,7 @@ class ToDoEditActivity : AppCompatActivity() {
 
                 } else {
 
-                    val memo = Memo(0, false, title, content, year, month, day)
+                    val memo = Memo(0, false, title, content, minhour, maxhour, minminute, maxminute, year, month, day)
                     EditViewModel.addMemo(memo)
                     Toast.makeText(this, "추가", Toast.LENGTH_SHORT).show()
                     finish()
@@ -91,7 +97,7 @@ class ToDoEditActivity : AppCompatActivity() {
 
                 } else {
 
-                    val memo = Memo(id, false, title, content, year, month, day)
+                    val memo = Memo(0, false, title, content, minhour, maxhour, minminute, maxminute, year, month, day)
                     EditViewModel.updateMemo(memo)
                     Toast.makeText(this, "수정", Toast.LENGTH_SHORT).show()
                     finish()
@@ -107,27 +113,27 @@ class ToDoEditActivity : AppCompatActivity() {
     fun getMinimumTime(context: Context){
 
         val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
-            hour = selectedHour
-            minute = selectedMinute
+            minhour = selectedHour
+            minminute = selectedMinute
 
-            binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",hour,minute)
-            binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",hour,minute)
+            binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
+//            binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",hour,minute)
         }
 
-        TimePickerDialog(context, timeSetListener, hour, minute, true).show()
+        TimePickerDialog(context, timeSetListener, minhour, minminute, true).show()
 
     }
 
     fun getMaximumTime(context: Context){
 
         val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
-            hour = selectedHour
-            minute = selectedMinute
+            maxhour = selectedHour
+            maxminute = selectedMinute
 
-            binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",hour,minute)
+            binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",maxhour,maxminute)
         }
 
-        TimePickerDialog(context, timeSetListener, hour, minute, true).show()
+        TimePickerDialog(context, timeSetListener, maxhour, maxminute, true).show()
 
     }
 }

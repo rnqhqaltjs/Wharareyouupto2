@@ -11,6 +11,10 @@ data class Memo(
     val check : Boolean,
     val title : String,
     val content : String?,
+    val minhour : Int,
+    val maxhour : Int,
+    val minminute : Int,
+    val maxminute : Int,
     val year : Int,
     val month : Int,
     val day : Int
