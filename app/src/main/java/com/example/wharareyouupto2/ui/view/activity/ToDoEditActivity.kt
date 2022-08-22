@@ -118,7 +118,7 @@ class ToDoEditActivity : AppCompatActivity() {
 
                 } else {
 
-                    val memo = Memo(0, false, title, content, eminhour, emaxhour, minminute, maxminute, year, month, day)
+                    val memo = Memo(0, false, title, content, eminhour, emaxhour, eminminute, emaxminute, year, month, day)
                     EditViewModel.updateMemo(memo)
                     Toast.makeText(this, "수정", Toast.LENGTH_SHORT).show()
                     finish()
