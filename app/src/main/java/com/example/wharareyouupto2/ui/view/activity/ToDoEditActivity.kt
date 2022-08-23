@@ -1,12 +1,10 @@
 package com.example.wharareyouupto2.ui.view.activity
 
 import android.app.TimePickerDialog
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.example.wharareyouupto2.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.ActivityToDoAddBinding
 import com.example.wharareyouupto2.ui.viewmodel.EditViewModel
