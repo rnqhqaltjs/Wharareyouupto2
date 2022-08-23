@@ -6,15 +6,15 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wharareyouupto2.data.model.Memo
-import com.example.wharareyouupto2.databinding.ActivityToDoAddBinding
+import com.example.wharareyouupto2.databinding.ActivityToDoEditBinding
 import com.example.wharareyouupto2.ui.viewmodel.EditViewModel
 import java.util.*
 
 class ToDoEditActivity : AppCompatActivity() {
 
     // 액티비티에서 인터페이스를 받아옴
-    private val binding: ActivityToDoAddBinding by lazy {
-        ActivityToDoAddBinding.inflate(layoutInflater)
+    private val binding: ActivityToDoEditBinding by lazy {
+        ActivityToDoEditBinding.inflate(layoutInflater)
     }
     private val EditViewModel: EditViewModel by viewModels()
 
@@ -75,7 +75,11 @@ class ToDoEditActivity : AppCompatActivity() {
 
                 Toast.makeText(this, "일정 이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
 
-            } else {
+            } else if(minhour>maxhour || (minhour==maxhour&&minminute>maxminute)){
+
+                Toast.makeText(this, "시간을 제대로 입력해주세요.", Toast.LENGTH_SHORT).show()
+
+            } else{
 
                 val memo = Memo(id, false, title, content, minhour, maxhour, minminute, maxminute, year, month, day)
                 EditViewModel.updateMemo(memo)

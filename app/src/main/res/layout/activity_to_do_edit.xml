@@ -227,7 +227,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_add"
+        android:src="@drawable/ic_edit"
         tools:ignore="SpeakableTextPresentCheck"
         android:backgroundTint="@color/orange"
         app:tint="@android:color/white" />

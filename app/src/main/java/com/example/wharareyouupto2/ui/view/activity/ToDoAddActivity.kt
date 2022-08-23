@@ -61,6 +61,10 @@ class ToDoAddActivity : AppCompatActivity() {
 
                 Toast.makeText(this, "일정 이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
 
+            } else if(minhour>maxhour || (minhour==maxhour&&minminute>maxminute)){
+
+                Toast.makeText(this, "시간을 제대로 입력해주세요.", Toast.LENGTH_SHORT).show()
+
             } else {
 
                 val memo = Memo(0, false, title, content, minhour, maxhour, minminute, maxminute, year, month, day)
@@ -81,7 +85,6 @@ class ToDoAddActivity : AppCompatActivity() {
             minminute = selectedMinute
 
             binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
-//            binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",hour,minute)
         }
 
         TimePickerDialog(context, timeSetListener, minhour, minminute, true).show()
