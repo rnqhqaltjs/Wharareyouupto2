@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.FragmentTodolistBinding
 import com.example.wharareyouupto2.ui.adapter.TodoAdapter
-import com.example.wharareyouupto2.ui.view.activity.ToDoEditActivity
+import com.example.wharareyouupto2.ui.view.activity.ToDoAddActivity
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 import java.util.*
 
@@ -63,11 +63,10 @@ class ToDoListFragment : Fragment() {
 
     // Fab 클릭시 사용되는 함수
     private fun onFabClicked(){
-        val intent = Intent(requireContext(), ToDoEditActivity::class.java)
+        val intent = Intent(requireContext(), ToDoAddActivity::class.java)
         intent.putExtra("year",currentYear)
         intent.putExtra("month",currentMonth)
         intent.putExtra("day",currentDate)
-        intent.putExtra("type","ADD")
         startActivity(intent)
     }
 

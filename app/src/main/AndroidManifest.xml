@@ -17,6 +17,9 @@
             android:name=".ui.view.activity.ToDoInsideActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.view.activity.ToDoAddActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.view.activity.ToDoEditActivity"
             android:exported="false" />
         <activity
