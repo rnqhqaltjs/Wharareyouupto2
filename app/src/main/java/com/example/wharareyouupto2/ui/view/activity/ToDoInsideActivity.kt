@@ -35,10 +35,10 @@ class ToDoInsideActivity : AppCompatActivity() {
 
         binding.title.text = title
         binding.content.text = content
-        binding.minhour.text = minhour.toString()
-        binding.maxhour.text = maxhour.toString()
-        binding.minminute.text = minminute.toString()
-        binding.maxminute.text = maxminute.toString()
+        binding.minhour.text = String.format("%02d", minhour)
+        binding.maxhour.text = String.format("%02d", maxhour)
+        binding.minminute.text = String.format("%02d", minminute)
+        binding.maxminute.text = String.format("%02d", maxminute)
         binding.year.text = year.toString() + "년"
         binding.month.text = (month+1).toString() +"월"
         binding.day.text = day.toString()+ "일"

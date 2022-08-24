@@ -38,10 +38,11 @@ class TodoAdapter(val context: Context, private var memoList:List<Memo>, private
             binding.memo = memo
 
             binding.title.text = memo.title
-            binding.minhour.text = memo.minhour.toString()
-            binding.maxhour.text = memo.maxhour.toString()
-            binding.minminute.text = memo.minminute.toString()
-            binding.maxminute.text = memo.maxminute.toString()
+
+            binding.minhour.text = String.format("%02d", memo.minhour)
+            binding.maxhour.text = String.format("%02d", memo.maxhour)
+            binding.minminute.text = String.format("%02d", memo.minminute)
+            binding.maxminute.text = String.format("%02d", memo.maxminute)
 
             itemView.setOnClickListener {
 
