@@ -91,4 +91,25 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
+//    fun progressbar(){
+//
+//        val itemcount = binding.recyclerView.adapter?.itemCount
+//
+//        val Cursor = helper?.readableDatabase?.rawQuery("select * from memo WHERE year = $currentYear" +
+//                " and month = $currentMonth and day = $currentDate and checkbox = 1",null)
+//
+//        binding.progressBar.max = itemcount!!
+//        binding.progressBar.progress = Cursor!!.count
+//
+//        val n1 = itemcount.toDouble()
+//        val n2 = Cursor.count.toDouble()
+//
+//        binding.cbc.text = String.format("%.0f",(n2/n1)*100) + "%"
+//
+//        if(binding.cbc.text == "NaN%"){
+//            binding.cbc.text = "0%"
+//        }
+//
+//    }
+
  }
