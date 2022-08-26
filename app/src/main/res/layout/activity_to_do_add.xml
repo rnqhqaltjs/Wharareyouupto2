@@ -101,6 +101,7 @@
             android:layout_gravity="right"
             android:textColor="@color/black"
             android:layout_marginEnd="10dp"
+            android:text="@{EditViewModel.textcount}"
             android:textStyle="bold" />
 
         <LinearLayout

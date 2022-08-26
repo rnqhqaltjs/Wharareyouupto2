@@ -39,8 +39,6 @@ class ToDoAddActivity : AppCompatActivity() {
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
 
-        EditViewModel.ontextcounter(binding.textwatcher.text)
-
         binding.content.addTextChangedListener(object : TextWatcher {
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
