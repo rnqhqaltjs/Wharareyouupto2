@@ -15,6 +15,7 @@ import com.example.wharareyouupto2.databinding.FragmentTodocalendarBinding
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.ui.view.activity.ToDoAddActivity
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
+import com.prolificinteractive.materialcalendarview.CalendarDay
 
 class ToDoCalendarFragment : Fragment() {
 
@@ -47,6 +48,8 @@ class ToDoCalendarFragment : Fragment() {
         if (!adapter.hasObservers()) {
             adapter.setHasStableIds(true)
         }
+
+        binding.calendarView.selectedDate = CalendarDay.today()
 
         // 아이템을 가로로 하나씩 보여주고 어댑터 연결
         binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
