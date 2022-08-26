@@ -49,8 +49,6 @@ class ToDoCalendarFragment : Fragment() {
             adapter.setHasStableIds(true)
         }
 
-        binding.calendarView.selectedDate = CalendarDay.today()
-
         // 아이템을 가로로 하나씩 보여주고 어댑터 연결
         binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
         binding.recyclerView.adapter = adapter
