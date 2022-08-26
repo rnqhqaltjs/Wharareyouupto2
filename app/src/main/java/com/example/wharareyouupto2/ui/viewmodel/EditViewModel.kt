@@ -38,14 +38,14 @@ class EditViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    val myText = ObservableField<String>()
+//    val textwatcher : ObservableField<String> = ObservableField()
+
+    val textwatcher = ObservableField("0 / 12")
 
     fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
         Log.w("tag", "onTextChanged $s")
-        textCounter = s.toString().length.toString()
+        textwatcher.set(s.toString().length.toString() + " / 12")
 
     }
-
-    val textcount = textCounter
 
 }
