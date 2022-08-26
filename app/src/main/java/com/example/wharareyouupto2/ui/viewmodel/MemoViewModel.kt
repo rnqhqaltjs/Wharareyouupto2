@@ -29,6 +29,7 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
         get() = _currentData
 
     init{
+
         val memoDao = MemoDatabase.getDatabase(application)!!.memoDao()
         repository = MemoRepository(memoDao)
         readAllData = repository.readAllData.asLiveData()
@@ -36,21 +37,9 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
-    fun addMemo(memo : Memo){
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.addMemo(memo)
-        }
-    }
-
     fun updateMemo(memo : Memo){
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateMemo(memo)
-        }
-    }
-
-    fun deleteMemo(memo : Memo){
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteMemo(memo)
         }
     }
 
