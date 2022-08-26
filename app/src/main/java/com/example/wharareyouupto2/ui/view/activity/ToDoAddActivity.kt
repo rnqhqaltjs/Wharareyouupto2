@@ -3,9 +3,12 @@ package com.example.wharareyouupto2.ui.view.activity
 import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.wharareyouupto2.R
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.ActivityToDoAddBinding
 import com.example.wharareyouupto2.ui.viewmodel.EditViewModel
@@ -24,6 +27,7 @@ class ToDoAddActivity : AppCompatActivity() {
     private var maxhour = cal.get(Calendar.HOUR_OF_DAY)
     private var minminute = cal.get(Calendar.MINUTE)
     private var maxminute = cal.get(Calendar.MINUTE)
+    private var image = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +36,99 @@ class ToDoAddActivity : AppCompatActivity() {
         val year = intent.getIntExtra("year",-1)
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
+
+        binding.title.addTextChangedListener(object : TextWatcher {
+
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+                binding.textwatcher.text = "0 / 12"
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                val input = binding.title.text.toString()
+                binding.textwatcher.text = input.length.toString() + " / 12"
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+                val input = binding.title.text.toString()
+                binding.textwatcher.text = input.length.toString() + " / 12"
+
+            }
+        })
+
+        binding.content.addTextChangedListener(object : TextWatcher {
+
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+                binding.textwatcher2.text = "0 / 50"
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                val input = binding.content.text.toString()
+                binding.textwatcher2.text = input.length.toString() + " / 50"
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+                val input = binding.content.text.toString()
+                binding.textwatcher2.text = input.length.toString() + " / 50"
+
+            }
+        })
+
+
+        binding.checkbox.setImageResource(R.drawable.checkboxpick)
+        image = R.drawable.checkboxpick
+
+
+        binding.checkbox.setOnClickListener {
+
+            binding.checkbox.setImageResource(R.drawable.checkboxpick)
+            binding.cake.setImageResource(R.drawable.cake)
+            binding.bookmark.setImageResource(R.drawable.bookmark)
+            binding.star.setImageResource(R.drawable.star)
+
+            image = R.drawable.checkboxpick
+        }
+
+        binding.cake.setOnClickListener {
+
+            binding.cake.setImageResource(R.drawable.cakepick)
+            binding.checkbox.setImageResource(R.drawable.checkbox)
+            binding.bookmark.setImageResource(R.drawable.bookmark)
+            binding.star.setImageResource(R.drawable.star)
+
+            image = R.drawable.cakepick
+        }
+
+        binding.bookmark.setOnClickListener {
+
+            binding.bookmark.setImageResource(R.drawable.bookmarkpick)
+            binding.checkbox.setImageResource(R.drawable.checkbox)
+            binding.cake.setImageResource(R.drawable.cake)
+            binding.star.setImageResource(R.drawable.star)
+
+            image = R.drawable.bookmarkpick
+        }
+
+        binding.star.setOnClickListener {
+
+            binding.star.setImageResource(R.drawable.starpick)
+            binding.checkbox.setImageResource(R.drawable.checkbox)
+            binding.cake.setImageResource(R.drawable.cake)
+            binding.bookmark.setImageResource(R.drawable.bookmark)
+
+            image = R.drawable.starpick
+        }
 
         binding.minimumtime.setOnClickListener {
 
