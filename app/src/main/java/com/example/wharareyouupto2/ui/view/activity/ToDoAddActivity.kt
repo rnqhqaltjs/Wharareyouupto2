@@ -33,36 +33,15 @@ class ToDoAddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        binding.editViewModel = EditViewModel
+
         val year = intent.getIntExtra("year",-1)
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
 
-        binding.title.addTextChangedListener(object : TextWatcher {
-
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-                binding.textwatcher.text = "0 / 12"
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                val input = binding.title.text.toString()
-                binding.textwatcher.text = input.length.toString() + " / 12"
-
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-
-                val input = binding.title.text.toString()
-                binding.textwatcher.text = input.length.toString() + " / 12"
-
-            }
-        })
+        EditViewModel.ontextcounter(binding.textwatcher.text)
 
         binding.content.addTextChangedListener(object : TextWatcher {
-
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
