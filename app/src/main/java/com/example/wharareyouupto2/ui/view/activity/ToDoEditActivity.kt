@@ -10,6 +10,7 @@ import com.example.wharareyouupto2.databinding.ActivityToDoEditBinding
 import com.example.wharareyouupto2.ui.viewmodel.EditViewModel
 import java.util.*
 
+
 class ToDoEditActivity : AppCompatActivity() {
 
     // 액티비티에서 인터페이스를 받아옴
@@ -21,8 +22,6 @@ class ToDoEditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        binding.= EditViewModel
 
         val id = intent.getIntExtra("id",-1)
         val title = intent.getStringExtra("title")
