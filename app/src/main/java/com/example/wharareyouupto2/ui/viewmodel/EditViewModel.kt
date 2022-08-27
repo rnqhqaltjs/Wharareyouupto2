@@ -1,10 +1,7 @@
 package com.example.wharareyouupto2.ui.viewmodel
 
 import android.app.Application
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import android.widget.Toast
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
@@ -40,17 +37,18 @@ class EditViewModel(application: Application) : AndroidViewModel(application) {
 
 //    val textwatcher : ObservableField<String> = ObservableField()
 
-    val textwatcher = ObservableField("0 / 12")
-    val textwatcher2 = ObservableField("0 / 50")
+    val titlewatcher = ObservableField("0 / 12")
 
-    fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+    fun titleTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
         Log.w("tag", "onTextChanged $s")
-        textwatcher.set(s.toString().length.toString() + " / 12")
+        titlewatcher.set(s.toString().length.toString() + " / 12")
     }
 
-    fun onTextChanged2(s: CharSequence, start: Int, before: Int, count: Int) {
+    val contentwatcher = ObservableField("0 / 50")
+
+    fun contentTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
         Log.w("tag", "onTextChanged $s")
-        textwatcher2.set(s.toString().length.toString() + " / 50")
+        contentwatcher.set(s.toString().length.toString() + " / 50")
     }
 
 }
