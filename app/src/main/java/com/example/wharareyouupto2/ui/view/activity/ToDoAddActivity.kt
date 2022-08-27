@@ -39,30 +39,6 @@ class ToDoAddActivity : AppCompatActivity() {
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
 
-        binding.content.addTextChangedListener(object : TextWatcher {
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-                binding.textwatcher2.text = "0 / 50"
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                val input = binding.content.text.toString()
-                binding.textwatcher2.text = input.length.toString() + " / 50"
-
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-
-                val input = binding.content.text.toString()
-                binding.textwatcher2.text = input.length.toString() + " / 50"
-
-            }
-        })
-
-
         binding.checkbox.setImageResource(R.drawable.checkboxpick)
         image = R.drawable.checkboxpick
 
