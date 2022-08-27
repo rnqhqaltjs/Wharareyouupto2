@@ -23,6 +23,8 @@ class ToDoEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        binding.editViewModel = EditViewModel
+
         val id = intent.getIntExtra("id",-1)
         val title = intent.getStringExtra("title")
         val content = intent.getStringExtra("content")
