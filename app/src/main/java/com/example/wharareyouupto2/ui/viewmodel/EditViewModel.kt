@@ -18,7 +18,6 @@ import kotlinx.coroutines.launch
 class EditViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository : MemoRepository
-    var counter : MutableLiveData<Int> = MutableLiveData()
 
     init{
 
@@ -41,14 +40,15 @@ class EditViewModel(application: Application) : AndroidViewModel(application) {
 
 //    val textwatcher : ObservableField<String> = ObservableField()
 
-    val titlewatcher = ObservableField("0 / 12")
+
+    val titlewatcher : ObservableField<String> = ObservableField()
 
     fun titleTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-        Log.w("tag", "onTextChanged $before")
+        Log.w("tag", "onTextChanged $s")
         titlewatcher.set(s.toString().length.toString() + " / 12")
     }
 
-    val contentwatcher = ObservableField("0 / 50")
+    val contentwatcher : ObservableField<String> = ObservableField()
 
     fun contentTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
         Log.w("tag", "onTextChanged $s")

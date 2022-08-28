@@ -40,7 +40,6 @@ class ToDoAddActivity : AppCompatActivity() {
         binding.checkbox.setImageResource(R.drawable.checkboxpick)
         image = R.drawable.checkboxpick
 
-
         binding.checkbox.setOnClickListener {
 
             binding.checkbox.setImageResource(R.drawable.checkboxpick)
