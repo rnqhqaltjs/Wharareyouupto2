@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.wharareyouupto2.data.db.MemoDatabase
 import com.example.wharareyouupto2.data.model.Memo
@@ -17,7 +18,7 @@ import kotlinx.coroutines.launch
 class EditViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository : MemoRepository
-    private var a : String = ""
+    var counter : MutableLiveData<Int> = MutableLiveData()
 
     init{
 
@@ -40,18 +41,11 @@ class EditViewModel(application: Application) : AndroidViewModel(application) {
 
 //    val textwatcher : ObservableField<String> = ObservableField()
 
-    val titlewatcher = ObservableField(a.length.toString() + " / 12")
+    val titlewatcher = ObservableField("0 / 12")
 
     fun titleTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-        Log.w("tag", "onTextChanged $s")
+        Log.w("tag", "onTextChanged $before")
         titlewatcher.set(s.toString().length.toString() + " / 12")
-        a = before.toString().length.toString()
-    }
-
-    var watcher: TextWatcher = object : TextWatcher {
-        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-        override fun afterTextChanged(s: Editable) {}
     }
 
     val contentwatcher = ObservableField("0 / 50")
