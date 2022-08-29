@@ -38,6 +38,28 @@ class ToDoEditActivity : AppCompatActivity() {
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
 
+        image = if(image == R.drawable.checkboxpick){
+
+            binding.checkbox.setImageResource(R.drawable.checkboxpick)
+            R.drawable.checkboxpick
+
+        } else if(image == R.drawable.cakepick){
+
+            binding.cake.setImageResource(R.drawable.cakepick)
+            R.drawable.cakepick
+
+        } else if(image == R.drawable.bookmarkpick){
+
+            binding.bookmark.setImageResource(R.drawable.bookmarkpick)
+            R.drawable.bookmarkpick
+
+        } else {
+
+            binding.star.setImageResource(R.drawable.starpick)
+            R.drawable.starpick
+
+        }
+
         binding.checkbox.setOnClickListener {
 
             binding.checkbox.setImageResource(R.drawable.checkboxpick)

@@ -42,13 +42,13 @@ class EditViewModel(application: Application) : AndroidViewModel(application) {
 
     val titlewatcher : ObservableField<String> = ObservableField()
 
-    fun title(a:String){
-        titlewatcher.set(a.length.toString() + " / 12")
-    }
-
     fun titleTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
         Log.w("tag", "onTextChanged $s")
         titlewatcher.set(s.toString().length.toString() + " / 12")
+    }
+
+    fun titleOnClick(s: String){
+        titlewatcher.set(s.length.toString() + " / 12")
     }
 
     val contentwatcher : ObservableField<String> = ObservableField()
@@ -56,6 +56,10 @@ class EditViewModel(application: Application) : AndroidViewModel(application) {
     fun contentTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
         Log.w("tag", "onTextChanged $s")
         contentwatcher.set(s.toString().length.toString() + " / 50")
+    }
+
+    fun contentOnClick(s: String){
+        contentwatcher.set(s.length.toString() + " / 50")
     }
 
 }

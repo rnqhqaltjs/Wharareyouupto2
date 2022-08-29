@@ -6,6 +6,7 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.example.wharareyouupto2.databinding.TodoItemBinding
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.ui.view.activity.ToDoInsideActivity
@@ -38,7 +39,7 @@ class TodoAdapter(val context: Context, private var memoList:List<Memo>, private
             binding.memo = memo
 
             binding.title.text = memo.title
-
+            binding.image.load(memo.image){size(100,100)}
             binding.minhour.text = String.format("%02d", memo.minhour)
             binding.maxhour.text = String.format("%02d", memo.maxhour)
             binding.minminute.text = String.format("%02d", memo.minminute)

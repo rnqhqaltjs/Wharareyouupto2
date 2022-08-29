@@ -89,7 +89,8 @@
                 android:singleLine="true"
                 android:background="@null"
                 android:maxLength="12"
-                android:onTextChanged="@{EditViewModel.titleTextChanged}" />
+                android:onTextChanged="@{EditViewModel.titleTextChanged}"
+                android:onClick="@{() -> EditViewModel.titleOnClick(title.getText().toString())}"/>
 
         </androidx.cardview.widget.CardView>
 
@@ -217,7 +218,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:maxLength="50"
-                android:onTextChanged="@{EditViewModel.contentTextChanged}" />
+                android:onTextChanged="@{EditViewModel.contentTextChanged}"
+                android:onClick="@{() -> EditViewModel.contentOnClick(content.getText().toString())}"/>
 
         </androidx.cardview.widget.CardView>
 

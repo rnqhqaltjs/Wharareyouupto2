@@ -2,13 +2,13 @@ package com.example.wharareyouupto2.ui.view.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import coil.api.load
-import com.example.wharareyouupto2.databinding.ActivityToDoInsideBinding
 import com.example.wharareyouupto2.data.model.Memo
+import com.example.wharareyouupto2.databinding.ActivityToDoInsideBinding
 import com.example.wharareyouupto2.ui.viewmodel.InsideViewModel
 
 class ToDoInsideActivity : AppCompatActivity() {
@@ -37,7 +37,7 @@ class ToDoInsideActivity : AppCompatActivity() {
 
         binding.title.text = title
         binding.content.text = content
-        binding.image.load(image)
+        binding.image.load(image){ size(200,200) }
         binding.minhour.text = String.format("%02d", minhour)
         binding.maxhour.text = String.format("%02d", maxhour)
         binding.minminute.text = String.format("%02d", minminute)
@@ -60,7 +60,7 @@ class ToDoInsideActivity : AppCompatActivity() {
                 putExtra("id",id)
                 putExtra("title",title)
                 putExtra("content",content)
-//            intent.putExtra("image",image)
+                putExtra("image",image)
                 putExtra("minhour",minhour)
                 putExtra("maxhour",maxhour)
                 putExtra("minminute",minminute)
