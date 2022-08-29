@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import coil.api.load
 import com.example.wharareyouupto2.databinding.ActivityToDoInsideBinding
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.ui.viewmodel.InsideViewModel
@@ -25,6 +26,7 @@ class ToDoInsideActivity : AppCompatActivity() {
         val id = intent.getIntExtra("id",-1)
         val title = intent.getStringExtra("title")
         val content = intent.getStringExtra("content")
+        val image = intent.getIntExtra("image",-1)
         val minhour = intent.getIntExtra("minhour", -1)
         val maxhour = intent.getIntExtra("maxhour", -1)
         val minminute = intent.getIntExtra("minminute", -1)
@@ -35,6 +37,7 @@ class ToDoInsideActivity : AppCompatActivity() {
 
         binding.title.text = title
         binding.content.text = content
+        binding.image.load(image)
         binding.minhour.text = String.format("%02d", minhour)
         binding.maxhour.text = String.format("%02d", maxhour)
         binding.minminute.text = String.format("%02d", minminute)
@@ -45,7 +48,7 @@ class ToDoInsideActivity : AppCompatActivity() {
 
         binding.deletefab.setOnClickListener {
 
-            InsideViewModel.deleteMemo(Memo(id, false, title!!, content,minhour,maxhour, minminute, maxminute, year, month, day))
+            InsideViewModel.deleteMemo(Memo(id, false, title!!, content, image, minhour, maxhour, minminute, maxminute, year, month, day))
             Toast.makeText(this,"삭제 완료", Toast.LENGTH_SHORT).show()
             finish()
 

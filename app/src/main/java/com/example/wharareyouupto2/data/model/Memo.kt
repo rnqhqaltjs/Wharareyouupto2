@@ -7,17 +7,17 @@ import androidx.room.PrimaryKey
 data class Memo(
 
     @PrimaryKey(autoGenerate = true)
-    var id : Int = 0,
-    val check : Boolean,
-    val title : String,
-    val content : String?,
-    val image : String,
-    val minhour : Int,
-    val maxhour : Int,
-    val minminute : Int,
-    val maxminute : Int,
-    val year : Int,
-    val month : Int,
-    val day : Int
+    var id: Int = 0,
+    val check: Boolean,
+    val title: String,
+    val content: String?,
+    val image: Int,
+    val minhour: Int,
+    val maxhour: Int,
+    val minminute: Int,
+    val maxminute: Int,
+    val year: Int,
+    val month: Int,
+    val day: Int
 
 )

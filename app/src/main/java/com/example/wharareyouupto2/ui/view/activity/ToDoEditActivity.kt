@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.wharareyouupto2.R
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.ActivityToDoEditBinding
 import com.example.wharareyouupto2.ui.viewmodel.EditViewModel
@@ -18,6 +19,7 @@ class ToDoEditActivity : AppCompatActivity() {
         ActivityToDoEditBinding.inflate(layoutInflater)
     }
     private val EditViewModel: EditViewModel by viewModels()
+    private var image = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,46 @@ class ToDoEditActivity : AppCompatActivity() {
         val year = intent.getIntExtra("year",-1)
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
+
+        binding.checkbox.setOnClickListener {
+
+            binding.checkbox.setImageResource(R.drawable.checkboxpick)
+            binding.cake.setImageResource(R.drawable.cake)
+            binding.bookmark.setImageResource(R.drawable.bookmark)
+            binding.star.setImageResource(R.drawable.star)
+
+            image = R.drawable.checkboxpick
+        }
+
+        binding.cake.setOnClickListener {
+
+            binding.cake.setImageResource(R.drawable.cakepick)
+            binding.checkbox.setImageResource(R.drawable.checkbox)
+            binding.bookmark.setImageResource(R.drawable.bookmark)
+            binding.star.setImageResource(R.drawable.star)
+
+            image = R.drawable.cakepick
+        }
+
+        binding.bookmark.setOnClickListener {
+
+            binding.bookmark.setImageResource(R.drawable.bookmarkpick)
+            binding.checkbox.setImageResource(R.drawable.checkbox)
+            binding.cake.setImageResource(R.drawable.cake)
+            binding.star.setImageResource(R.drawable.star)
+
+            image = R.drawable.bookmarkpick
+        }
+
+        binding.star.setOnClickListener {
+
+            binding.star.setImageResource(R.drawable.starpick)
+            binding.checkbox.setImageResource(R.drawable.checkbox)
+            binding.cake.setImageResource(R.drawable.cake)
+            binding.bookmark.setImageResource(R.drawable.bookmark)
+
+            image = R.drawable.starpick
+        }
 
         binding.minimumtime.setOnClickListener {
 
@@ -84,7 +126,7 @@ class ToDoEditActivity : AppCompatActivity() {
 
             } else{
 
-                val memo = Memo(id, false, title, content, minhour, maxhour, minminute, maxminute, year, month, day)
+                val memo = Memo(id, false, title, content,image, minhour, maxhour, minminute, maxminute, year, month, day)
                 EditViewModel.updateMemo(memo)
                 Toast.makeText(this, "수정", Toast.LENGTH_SHORT).show()
                 finish()
