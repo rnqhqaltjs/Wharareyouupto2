@@ -40,8 +40,11 @@ class EditViewModel(application: Application) : AndroidViewModel(application) {
 
 //    val textwatcher : ObservableField<String> = ObservableField()
 
-
     val titlewatcher : ObservableField<String> = ObservableField()
+
+    fun title(a:String){
+        titlewatcher.set(a.length.toString() + " / 12")
+    }
 
     fun titleTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
         Log.w("tag", "onTextChanged $s")

@@ -57,5 +57,9 @@ dependencies {
     kapt "androidx.room:room-compiler:2.4.3"
     implementation "androidx.room:room-ktx:2.4.3"
 
+    //material-calendarview
     implementation 'com.github.prolificinteractive:material-calendarview:1.4.3'
+
+    //coil
+    implementation 'io.coil-kt:coil:0.10.0'
 }
