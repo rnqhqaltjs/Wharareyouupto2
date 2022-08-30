@@ -37,9 +37,7 @@ class EditViewModel(application: Application) : AndroidViewModel(application) {
             repository.updateMemo(memo)
         }
     }
-
-//    val textwatcher : ObservableField<String> = ObservableField()
-
+    
     val titlewatcher : ObservableField<String> = ObservableField()
 
     fun titleTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
