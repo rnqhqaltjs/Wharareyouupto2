@@ -1,12 +1,16 @@
 package com.example.wharareyouupto2.ui.view.activity
 
-import android.app.TimePickerDialog
+import android.app.*
 import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wharareyouupto2.R
+import com.example.wharareyouupto2.alarm.*
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.ActivityToDoAddBinding
 import com.example.wharareyouupto2.ui.viewmodel.EditViewModel
@@ -27,9 +31,12 @@ class ToDoAddActivity : AppCompatActivity() {
     private var maxminute = cal.get(Calendar.MINUTE)
     private var image = 0
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        createNotificationChannel()
 
         binding.editViewModel = EditViewModel
 
@@ -121,11 +128,13 @@ class ToDoAddActivity : AppCompatActivity() {
 
             }
 
+            scheduleNotification()
+
         }
 
     }
 
-    fun getMinimumTime(context: Context){
+    private fun getMinimumTime(context: Context){
 
         val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
             minhour = selectedHour
@@ -138,7 +147,7 @@ class ToDoAddActivity : AppCompatActivity() {
 
     }
 
-    fun getMaximumTime(context: Context){
+    private fun getMaximumTime(context: Context){
 
         val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
             maxhour = selectedHour
@@ -151,4 +160,67 @@ class ToDoAddActivity : AppCompatActivity() {
 
     }
 
+    private fun scheduleNotification() {
+
+        val intent = Intent(applicationContext, AlarmReceiver::class.java)
+        val title = "알람"
+        val message = "테스트"
+        intent.putExtra(titleExtra, title)
+        intent.putExtra(messageExtra, message)
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            applicationContext,
+            notificationID,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val time = getTime()
+        alarmManager.setExactAndAllowWhileIdle(
+            AlarmManager.RTC_WAKEUP,
+            time,
+            pendingIntent
+        )
+        showAlert(time, title, message)
+    }
+
+    private fun showAlert(time: Long, title: String, message: String) {
+
+        val date = Date(time)
+        val dateFormat = android.text.format.DateFormat.getLongDateFormat(applicationContext)
+        val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
+
+        AlertDialog.Builder(this)
+            .setTitle("Notification Scheduled")
+            .setMessage(
+                "Title: " + title +
+                        "\nMessage: " + message +
+                        "\nAt: " + dateFormat.format(date) + " " + timeFormat.format(date))
+            .setPositiveButton("Okay"){_,_ ->}
+            .show()
+    }
+
+    private fun getTime(): Long {
+        val minute = minminute
+        val hour = minhour
+        val day = 30
+        val month = 7
+        val year = 2022
+
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, day, hour, minute)
+        return calendar.timeInMillis
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createNotificationChannel() {
+        val name = "Notif Channel"
+        val desc = "A Description of the Channel"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(channelID, name, importance)
+        channel.description = desc
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
+    }
 }
