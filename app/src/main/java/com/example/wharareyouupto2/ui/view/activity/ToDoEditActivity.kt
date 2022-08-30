@@ -19,7 +19,6 @@ class ToDoEditActivity : AppCompatActivity() {
         ActivityToDoEditBinding.inflate(layoutInflater)
     }
     private val EditViewModel: EditViewModel by viewModels()
-    private var image = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +29,7 @@ class ToDoEditActivity : AppCompatActivity() {
         val id = intent.getIntExtra("id",-1)
         val title = intent.getStringExtra("title")
         val content = intent.getStringExtra("content")
+        var image = intent.getIntExtra("image",-1)
         var minhour = intent.getIntExtra("minhour",-1)
         var maxhour = intent.getIntExtra("maxhour",-1)
         var minminute = intent.getIntExtra("minminute",-1)
@@ -38,26 +38,31 @@ class ToDoEditActivity : AppCompatActivity() {
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
 
-        image = if(image == R.drawable.checkboxpick){
+        image = when (image) {
+            R.drawable.checkboxpick -> {
 
-            binding.checkbox.setImageResource(R.drawable.checkboxpick)
-            R.drawable.checkboxpick
+                binding.checkbox.setImageResource(R.drawable.checkboxpick)
+                R.drawable.checkboxpick
 
-        } else if(image == R.drawable.cakepick){
+            }
+            R.drawable.cakepick -> {
 
-            binding.cake.setImageResource(R.drawable.cakepick)
-            R.drawable.cakepick
+                binding.cake.setImageResource(R.drawable.cakepick)
+                R.drawable.cakepick
 
-        } else if(image == R.drawable.bookmarkpick){
+            }
+            R.drawable.bookmarkpick -> {
 
-            binding.bookmark.setImageResource(R.drawable.bookmarkpick)
-            R.drawable.bookmarkpick
+                binding.bookmark.setImageResource(R.drawable.bookmarkpick)
+                R.drawable.bookmarkpick
 
-        } else {
+            }
+            else -> {
 
-            binding.star.setImageResource(R.drawable.starpick)
-            R.drawable.starpick
+                binding.star.setImageResource(R.drawable.starpick)
+                R.drawable.starpick
 
+            }
         }
 
         binding.checkbox.setOnClickListener {
