@@ -30,6 +30,7 @@ class ToDoAddActivity : AppCompatActivity() {
     private var minminute = cal.get(Calendar.MINUTE)
     private var maxminute = cal.get(Calendar.MINUTE)
     private var image = 0
+    private var alarm = false
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,6 +100,11 @@ class ToDoAddActivity : AppCompatActivity() {
 
         }
 
+        //미사용은 언다바(_)처리
+        binding.alarm.setOnCheckedChangeListener { _, isChecked ->
+            alarm = isChecked
+        }
+
 
         binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
         binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",maxhour,maxminute)
@@ -110,7 +116,6 @@ class ToDoAddActivity : AppCompatActivity() {
             val title = binding.title.text.toString()
             val content = binding.content.text.toString()
 
-
             if (title.isEmpty()){
 
                 Toast.makeText(this, "일정 이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -121,7 +126,7 @@ class ToDoAddActivity : AppCompatActivity() {
 
             } else {
 
-                val memo = Memo(0, false, title, content, image, minhour, maxhour, minminute, maxminute, year, month, day)
+                val memo = Memo(0, false, title, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day)
                 EditViewModel.addMemo(memo)
                 Toast.makeText(this, "추가", Toast.LENGTH_SHORT).show()
                 finish()

@@ -30,6 +30,7 @@ class ToDoEditActivity : AppCompatActivity() {
         val title = intent.getStringExtra("title")
         val content = intent.getStringExtra("content")
         var image = intent.getIntExtra("image",-1)
+        var alarm = intent.getBooleanExtra("alarm",false)
         var minhour = intent.getIntExtra("minhour",-1)
         var maxhour = intent.getIntExtra("maxhour",-1)
         var minminute = intent.getIntExtra("minminute",-1)
@@ -105,6 +106,11 @@ class ToDoEditActivity : AppCompatActivity() {
             image = R.drawable.starpick
         }
 
+        //미사용은 언다바(_)처리
+        binding.alarm.setOnCheckedChangeListener { _, isChecked ->
+            alarm = isChecked
+        }
+
         binding.minimumtime.setOnClickListener {
 
             val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
@@ -133,6 +139,7 @@ class ToDoEditActivity : AppCompatActivity() {
 
         binding.title.setText(title)
         binding.content.setText(content)
+        binding.alarm.isChecked = alarm == true
         binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
         binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",maxhour,maxminute)
 
@@ -153,7 +160,7 @@ class ToDoEditActivity : AppCompatActivity() {
 
             } else{
 
-                val memo = Memo(id, false, title, content,image, minhour, maxhour, minminute, maxminute, year, month, day)
+                val memo = Memo(id, false, title, content,image, alarm, minhour, maxhour, minminute, maxminute, year, month, day)
                 EditViewModel.updateMemo(memo)
                 Toast.makeText(this, "수정", Toast.LENGTH_SHORT).show()
                 finish()

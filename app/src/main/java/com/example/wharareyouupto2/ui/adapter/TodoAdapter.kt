@@ -52,6 +52,7 @@ class TodoAdapter(val context: Context, private var memoList:List<Memo>, private
                     putExtra("title", memo.title)
                     putExtra("content", memo.content)
                     putExtra("image", memo.image)
+                    putExtra("alarm",memo.alarm)
                     putExtra("minhour", memo.minhour)
                     putExtra("maxhour", memo.maxhour)
                     putExtra("minminute", memo.minminute)
@@ -73,13 +74,13 @@ class TodoAdapter(val context: Context, private var memoList:List<Memo>, private
                 if (isChecked) {
 
                     binding.title.paintFlags = binding.title.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                    val memo = Memo(memo.id, true, memo.title, memo.content, memo.image, memo.minhour, memo.maxhour, memo.minminute, memo.maxminute, memo.year, memo.month, memo.day)
+                    val memo = Memo(memo.id, true, memo.title, memo.content, memo.image, memo.alarm, memo.minhour, memo.maxhour, memo.minminute, memo.maxminute, memo.year, memo.month, memo.day)
                     memoViewModel.updateMemo(memo)
 
                 } else {
 
                     binding.title.paintFlags = binding.title.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-                    val memo = Memo(memo.id, false, memo.title, memo.content, memo.image, memo.minhour, memo.maxhour, memo.minminute, memo.maxminute, memo.year, memo.month, memo.day)
+                    val memo = Memo(memo.id, false, memo.title, memo.content, memo.image, memo.alarm, memo.minhour, memo.maxhour, memo.minminute, memo.maxminute, memo.year, memo.month, memo.day)
                     memoViewModel.updateMemo(memo)
 
                 }

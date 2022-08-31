@@ -27,6 +27,7 @@ class ToDoInsideActivity : AppCompatActivity() {
         val title = intent.getStringExtra("title")
         val content = intent.getStringExtra("content")
         val image = intent.getIntExtra("image",-1)
+        val alarm = intent.getBooleanExtra("alarm",false)
         val minhour = intent.getIntExtra("minhour", -1)
         val maxhour = intent.getIntExtra("maxhour", -1)
         val minminute = intent.getIntExtra("minminute", -1)
@@ -48,7 +49,7 @@ class ToDoInsideActivity : AppCompatActivity() {
 
         binding.deletefab.setOnClickListener {
 
-            InsideViewModel.deleteMemo(Memo(id, false, title!!, content, image, minhour, maxhour, minminute, maxminute, year, month, day))
+            InsideViewModel.deleteMemo(Memo(id, false, title!!, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day))
             Toast.makeText(this,"삭제 완료", Toast.LENGTH_SHORT).show()
             finish()
 
@@ -61,6 +62,7 @@ class ToDoInsideActivity : AppCompatActivity() {
                 putExtra("title",title)
                 putExtra("content",content)
                 putExtra("image",image)
+                putExtra("alarm",alarm)
                 putExtra("minhour",minhour)
                 putExtra("maxhour",maxhour)
                 putExtra("minminute",minminute)

@@ -116,7 +116,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="종일 : "
+                android:text="알람 : "
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -127,7 +127,7 @@
                 android:layout_weight="1" />
 
             <Switch
-                android:id="@+id/allday"
+                android:id="@+id/alarm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />

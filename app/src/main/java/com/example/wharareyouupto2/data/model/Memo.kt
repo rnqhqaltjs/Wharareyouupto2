@@ -12,6 +12,7 @@ data class Memo(
     val title: String,
     val content: String?,
     val image: Int,
+    val alarm: Boolean,
     val minhour: Int,
     val maxhour: Int,
     val minminute: Int,
