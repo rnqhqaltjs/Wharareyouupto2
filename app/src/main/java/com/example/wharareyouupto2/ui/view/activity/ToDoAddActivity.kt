@@ -182,23 +182,6 @@ class ToDoAddActivity : AppCompatActivity() {
             time,
             pendingIntent
         )
-        showAlert(time, title, message)
-    }
-
-    private fun showAlert(time: Long, title: String, message: String) {
-
-        val date = Date(time)
-        val dateFormat = android.text.format.DateFormat.getLongDateFormat(applicationContext)
-        val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
-
-        AlertDialog.Builder(this)
-            .setTitle("Notification Scheduled")
-            .setMessage(
-                "Title: " + title +
-                        "\nMessage: " + message +
-                        "\nAt: " + dateFormat.format(date) + " " + timeFormat.format(date))
-            .setPositiveButton("Okay"){_,_ ->}
-            .show()
     }
 
     private fun getTime(): Long {
@@ -215,7 +198,7 @@ class ToDoAddActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createNotificationChannel() {
-        val name = "Notif Channel"
+        val name = "Notify Channel"
         val desc = "A Description of the Channel"
         val importance = NotificationManager.IMPORTANCE_DEFAULT
         val channel = NotificationChannel(channelID, name, importance)
