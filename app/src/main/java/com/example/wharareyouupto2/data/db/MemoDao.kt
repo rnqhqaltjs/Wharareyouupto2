@@ -18,11 +18,11 @@ interface MemoDao {
     suspend fun deleteMemo(memo : Memo)
 
     // 큰 날짜부터 출력
-    @Query("SELECT * FROM Memo ORDER BY year DESC, month DESC, day DESC, id DESC")
+    @Query("SELECT * FROM Memo ORDER BY minhour , minminute")
     fun readAllData() : Flow<List<Memo>>
 
     // 날짜 정보를 입력받아 그 날짜에 해당하는 메모만 반환
-    @Query("SELECT * FROM Memo WHERE year = :year AND month = :month AND day = :day ORDER BY id DESC")
+    @Query("SELECT * FROM Memo WHERE year = :year AND month = :month AND day = :day ORDER BY minhour , minminute")
     fun readDateData(year : Int, month : Int, day : Int) : List<Memo>
 
     // 완료한 메모만 출력
@@ -30,7 +30,10 @@ interface MemoDao {
     fun readDoneData() : Flow<List<Memo>>
 
     // 모든 날짜를 가져옴
-    @Query("SELECT * FROM Memo ORDER BY id DESC")
+    @Query("SELECT * FROM Memo")
     fun getAll() : List<Memo>
+
+    @Query("SELECT * FROM Memo WHERE `alarm` = 1")
+    fun getAllAlarms() : Flow<List<Memo>>
 
 }

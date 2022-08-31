@@ -6,15 +6,11 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.os.Handler
 import android.os.Looper
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.wharareyouupto2.alarm.AlarmReceiver
 import com.example.wharareyouupto2.alarm.messageExtra
@@ -23,13 +19,9 @@ import com.example.wharareyouupto2.alarm.titleExtra
 import com.example.wharareyouupto2.data.db.MemoDatabase
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.data.repository.MemoRepository
-import com.example.wharareyouupto2.util.CalendarDecorator.*
-import com.prolificinteractive.materialcalendarview.CalendarDay
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.example.wharareyouupto2.util.CalendarDecorator.EventDecorator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class EditViewModel(application: Application) : AndroidViewModel(application) {
@@ -118,13 +110,6 @@ class EditViewModel(application: Application) : AndroidViewModel(application) {
 //                }
 //            }
 //        }
-//
-//        Handler(Looper.getMainLooper()).postDelayed({
-//
-//            if (dates.size > 0) {
-//                calendar.addDecorator(EventDecorator(Color.BLACK, dates)) // 점 찍기
-//            }
-//        }, 0)
 //
 //    }
 

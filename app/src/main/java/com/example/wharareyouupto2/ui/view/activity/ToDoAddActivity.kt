@@ -90,13 +90,28 @@ class ToDoAddActivity : AppCompatActivity() {
 
         binding.minimumtime.setOnClickListener {
 
-            getMinimumTime(this)
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
+                minhour = selectedHour
+                minminute = selectedMinute
+
+                binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
+            }
+
+            TimePickerDialog(this, timeSetListener, minhour, minminute, true).show()
 
         }
 
         binding.maximumtime.setOnClickListener {
 
-            getMaximumTime(this)
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
+                maxhour = selectedHour
+                maxminute = selectedMinute
+
+                binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",maxhour,maxminute)
+            }
+
+            TimePickerDialog(this, timeSetListener, maxhour, maxminute, true).show()
+
 
         }
 
@@ -132,73 +147,30 @@ class ToDoAddActivity : AppCompatActivity() {
                 finish()
 
             }
+            val calendar = Calendar.getInstance()
+            calendar.set(year, month, day, minhour, minminute)
 
-            scheduleNotification()
+            val intent = Intent(applicationContext, AlarmReceiver::class.java)
+            intent.putExtra(titleExtra, title)
+            intent.putExtra(messageExtra, content)
+            intent.putExtra(imageExtra, image)
+
+            val pendingIntent = PendingIntent.getBroadcast(
+                applicationContext,
+                notificationID,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
+
+            val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                calendar.timeInMillis,
+                pendingIntent
+            )
 
         }
 
-    }
-
-    private fun getMinimumTime(context: Context){
-
-        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
-            minhour = selectedHour
-            minminute = selectedMinute
-
-            binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
-        }
-
-        TimePickerDialog(context, timeSetListener, minhour, minminute, true).show()
-
-    }
-
-    private fun getMaximumTime(context: Context){
-
-        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
-            maxhour = selectedHour
-            maxminute = selectedMinute
-
-            binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",maxhour,maxminute)
-        }
-
-        TimePickerDialog(context, timeSetListener, maxhour, maxminute, true).show()
-
-    }
-
-    private fun scheduleNotification() {
-
-        val intent = Intent(applicationContext, AlarmReceiver::class.java)
-        val title = "알람"
-        val message = "테스트"
-        intent.putExtra(titleExtra, title)
-        intent.putExtra(messageExtra, message)
-
-        val pendingIntent = PendingIntent.getBroadcast(
-            applicationContext,
-            notificationID,
-            intent,
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-        )
-
-        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val time = getTime()
-        alarmManager.setExactAndAllowWhileIdle(
-            AlarmManager.RTC_WAKEUP,
-            time,
-            pendingIntent
-        )
-    }
-
-    private fun getTime(): Long {
-        val minute = minminute
-        val hour = minhour
-        val day = 30
-        val month = 7
-        val year = 2022
-
-        val calendar = Calendar.getInstance()
-        calendar.set(year, month, day, hour, minute)
-        return calendar.timeInMillis
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
