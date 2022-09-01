@@ -35,5 +35,5 @@ interface MemoDao {
 
     @Query("SELECT * FROM Memo WHERE `alarm` = 1")
     fun getAllAlarms() : Flow<List<Memo>>
-    
+
 }
