@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wharareyouupto2.data.db.MemoDatabase
 import com.example.wharareyouupto2.data.model.Memo
@@ -14,6 +17,10 @@ import com.example.wharareyouupto2.databinding.FragmentTodolistBinding
 import com.example.wharareyouupto2.ui.adapter.TodoAdapter
 import com.example.wharareyouupto2.ui.view.activity.ToDoAddActivity
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
 class ToDoListFragment : Fragment() {
@@ -44,7 +51,6 @@ class ToDoListFragment : Fragment() {
 
         memodatabase = MemoDatabase.getDatabase(requireContext())!!
 
-        binding.memoViewModel = memoViewModel
 
         // 아이템에 아이디를 설정해줌 (깜빡이는 현상방지)
         if (!adapter.hasObservers()) {
@@ -59,6 +65,15 @@ class ToDoListFragment : Fragment() {
 //        memoViewModel.readAllData.observe(viewLifecycleOwner) {
 //            binding.progressBar.max = memoViewModel.progressbar(memodatabase)
 //        }
+
+        lifecycleScope.launch(Dispatchers.IO) {
+
+            binding.progressBar.max = memodatabase.memoDao().getAll().size
+
+        }
+
+
+
 
 
 

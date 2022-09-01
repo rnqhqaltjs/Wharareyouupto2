@@ -25,7 +25,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:max="@{MemoViewModel.test()}"
                 android:progress="1"
                 android:scaleY="1"
                 android:progressTint="@color/orange"
