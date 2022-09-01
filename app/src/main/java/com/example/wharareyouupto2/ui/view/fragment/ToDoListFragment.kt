@@ -44,7 +44,7 @@ class ToDoListFragment : Fragment() {
 
         memodatabase = MemoDatabase.getDatabase(requireContext())!!
 
-//        binding.memoViewModel = memoViewModel
+        binding.memoViewModel = memoViewModel
 
         // 아이템에 아이디를 설정해줌 (깜빡이는 현상방지)
         if (!adapter.hasObservers()) {
@@ -55,10 +55,12 @@ class ToDoListFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
         binding.recyclerView.adapter = adapter
 
-        // 메모 데이터가 수정되었을 경우 날짜 데이터를 불러옴 (currentData 변경)
-        memoViewModel.readAllData.observe(viewLifecycleOwner) {
-            memoViewModel.progressbar(memodatabase)
-        }
+//        // 메모 데이터가 수정되었을 경우 날짜 데이터를 불러옴 (currentData 변경)
+//        memoViewModel.readAllData.observe(viewLifecycleOwner) {
+//            binding.progressBar.max = memoViewModel.progressbar(memodatabase)
+//        }
+
+
 
         memoViewModel.readAllData.observe(viewLifecycleOwner) {
             adapter.setData(it)
