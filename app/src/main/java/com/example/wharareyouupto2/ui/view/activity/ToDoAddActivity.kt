@@ -147,27 +147,7 @@ class ToDoAddActivity : AppCompatActivity() {
                 finish()
 
             }
-            val calendar = Calendar.getInstance()
-            calendar.set(year, month, day, minhour, minminute)
 
-            val intent = Intent(applicationContext, AlarmReceiver::class.java)
-            intent.putExtra(titleExtra, title)
-            intent.putExtra(messageExtra, content)
-            intent.putExtra(imageExtra, image)
-
-            val pendingIntent = PendingIntent.getBroadcast(
-                applicationContext,
-                notificationID,
-                intent,
-                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-            )
-
-            val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            alarmManager.setExactAndAllowWhileIdle(
-                AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis,
-                pendingIntent
-            )
 
         }
 
