@@ -84,18 +84,7 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
         }, 0)
 
     }
-
-    fun progressbar(memoDatabase: MemoDatabase) {
-
-        viewModelScope.launch(Dispatchers.IO) {
-
-
-
-        }
-
-
-    }
-
+    
     fun test(memoDatabase:MemoDatabase): Int{
 
         return memoDatabase.memoDao().getAll().size
