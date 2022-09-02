@@ -93,8 +93,13 @@ class ToDoListFragment : Fragment() {
 
         lifecycleScope.launch(Dispatchers.IO) {
 
-            binding.progressBar.max = memodatabase.memoDao().getAll().size
-            binding.progressBar.progress = memodatabase.memoDao().getCompletion().size
+            val progress = memodatabase.memoDao().getCompletion().size
+            val max = memodatabase.memoDao().getAll().size
+
+            binding.progressBar.progress = progress
+            binding.progressBar.max = max
+            
+            binding.cbc.text = String.format("%.0f",(progress.toDouble()/max.toDouble())*100) + "%"
 
         }
 
