@@ -77,13 +77,22 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:elevation="10dp"
+                        app:cardCornerRadius="15dp">
+
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:overScrollMode="never">
-
-                    </androidx.recyclerview.widget.RecyclerView>
+                        android:overScrollMode="never"/>
+                    </androidx.cardview.widget.CardView>
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/fab"

@@ -100,10 +100,16 @@ class ToDoListFragment : Fragment() {
 
             binding.progressBar.progress = progress
             binding.progressBar.max = max
-            
-            binding.cbc.text = String.format("%.0f",(progress.toDouble()/max.toDouble())*100) + "%"
+
+//            binding.cbc.text = String.format("%.0f",(progress.toDouble()/max.toDouble())*100) + "%"
+//
+//            if(binding.cbc.text == "NaN%"){
+//                binding.cbc.text = "0%"
+//            }
 
         }
+
+
 
     }
 
