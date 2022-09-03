@@ -84,7 +84,7 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
         }, 0)
 
     }
-    
+
     fun test(memoDatabase:MemoDatabase): Int{
 
         return memoDatabase.memoDao().getAll().size

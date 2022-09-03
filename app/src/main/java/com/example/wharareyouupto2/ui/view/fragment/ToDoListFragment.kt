@@ -1,5 +1,6 @@
 package com.example.wharareyouupto2.ui.view.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -89,6 +90,7 @@ class ToDoListFragment : Fragment() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private fun progressbar(){
 
         lifecycleScope.launch(Dispatchers.IO) {
