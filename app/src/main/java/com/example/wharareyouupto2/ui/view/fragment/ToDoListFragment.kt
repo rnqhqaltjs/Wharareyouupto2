@@ -37,6 +37,8 @@ class ToDoListFragment : Fragment() {
     private val currentYear = calendar.get(Calendar.YEAR)
     private val currentMonth = calendar.get(Calendar.MONTH)
     private val currentDate = calendar.get(Calendar.DATE)
+    private var progress = 0
+    private var max = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -95,17 +97,17 @@ class ToDoListFragment : Fragment() {
 
         lifecycleScope.launch(Dispatchers.IO) {
 
-            val progress = memodatabase.memoDao().getCompletion().size
-            val max = memodatabase.memoDao().getAll().size
+            progress = memodatabase.memoDao().getCompletion().size
+            max = memodatabase.memoDao().getAll().size
 
             binding.progressBar.progress = progress
             binding.progressBar.max = max
 
-//            binding.cbc.text = String.format("%.0f",(progress.toDouble()/max.toDouble())*100) + "%"
-//
-//            if(binding.cbc.text == "NaN%"){
-//                binding.cbc.text = "0%"
-//            }
+            binding.cbc.text = String.format("%.0f",(progress.toDouble()/max.toDouble())*100) + "%"
+
+            if(binding.cbc.text == "NaN%"){
+                binding.cbc.text = "0%"
+            }
 
         }
 
