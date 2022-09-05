@@ -8,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wharareyouupto2.data.db.MemoDatabase
 import com.example.wharareyouupto2.data.model.Memo
@@ -18,8 +16,6 @@ import com.example.wharareyouupto2.databinding.FragmentTodolistBinding
 import com.example.wharareyouupto2.ui.adapter.TodoAdapter
 import com.example.wharareyouupto2.ui.view.activity.ToDoAddActivity
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
-import com.prolificinteractive.materialcalendarview.CalendarDay
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
@@ -37,8 +33,6 @@ class ToDoListFragment : Fragment() {
     private val currentYear = calendar.get(Calendar.YEAR)
     private val currentMonth = calendar.get(Calendar.MONTH)
     private val currentDate = calendar.get(Calendar.DATE)
-    private var progress = 0
-    private var max = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -97,8 +91,8 @@ class ToDoListFragment : Fragment() {
 
         lifecycleScope.launch(Dispatchers.IO) {
 
-            progress = memodatabase.memoDao().getCompletion().size
-            max = memodatabase.memoDao().getAll().size
+            val progress = memodatabase.memoDao().getCompletion().size
+            val max = memodatabase.memoDao().getAll().size
 
             binding.progressBar.progress = progress
             binding.progressBar.max = max
