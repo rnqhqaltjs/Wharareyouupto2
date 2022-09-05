@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.wharareyouupto2.R
 import com.example.wharareyouupto2.data.db.MemoDatabase
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.FragmentTodolistBinding
@@ -18,6 +20,7 @@ import com.example.wharareyouupto2.ui.view.activity.ToDoAddActivity
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class ToDoListFragment : Fragment() {
@@ -47,7 +50,6 @@ class ToDoListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         memodatabase = MemoDatabase.getDatabase(requireContext())!!
-
 
         // 아이템에 아이디를 설정해줌 (깜빡이는 현상방지)
         if (!adapter.hasObservers()) {
@@ -97,16 +99,18 @@ class ToDoListFragment : Fragment() {
             binding.progressBar.progress = progress
             binding.progressBar.max = max
 
-            binding.cbc.text = String.format("%.0f",(progress.toDouble()/max.toDouble())*100) + "%"
+            withContext(Dispatchers.Main) {
 
-            if(binding.cbc.text == "NaN%"){
-                binding.cbc.text = "0%"
+                binding.cbc.text = String.format("%.0f",(progress.toDouble()/max.toDouble())*100) + "%"
+
+                if(binding.cbc.text == "NaN%"){
+                    binding.cbc.text = "0%"
+                }
+
             }
 
         }
-
-
-
+        
     }
 
     override fun onDestroyView() {
