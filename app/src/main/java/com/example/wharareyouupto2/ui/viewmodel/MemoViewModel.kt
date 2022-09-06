@@ -29,10 +29,6 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
     val currentData : LiveData<List<Memo>>
         get() = _currentData
 
-//    private val _max = MutableLiveData<Int?>()
-//    val max: LiveData<Int?>
-//        get() = _max
-
     init{
 
         val memoDao = MemoDatabase.getDatabase(application)!!.memoDao()

@@ -110,7 +110,7 @@ class ToDoListFragment : Fragment() {
             }
 
         }
-        
+
     }
 
     override fun onDestroyView() {
