@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+
+    <item
+        android:id="@+id/item_deleteall"
+        android:title="데이터 초기화"
+        android:icon="@drawable/data_reset"/>
+
+    <item
+        android:id="@+id/item_exit"
+        android:title="나가기"
+        android:icon="@drawable/exit"/>
+
+    <item
+        android:id="@+id/item_info"
+        android:title="오픈소스 라이선스"
+        android:icon="@drawable/info"/>
+
+
+</menu>
