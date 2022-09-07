@@ -1,7 +1,11 @@
 package com.example.wharareyouupto2.ui.view.activity
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -16,15 +20,54 @@ import com.example.wharareyouupto2.R
 import com.example.wharareyouupto2.databinding.ActivityMainBinding
 import com.example.wharareyouupto2.ui.adapter.ViewPagerAdapter
 import com.google.android.material.navigation.NavigationBarView
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+    lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+
+        toggle = ActionBarDrawerToggle(this,binding.drawer,
+            R.string.drawer_opened,
+            R.string.drawer_closed
+        )
+
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        toggle.syncState()
+
+        binding.navigationView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+
+                //데이터 초기화
+                R.id.item_deleteall -> {
+
+                }
+
+                //나가기
+                R.id.item_exit -> {
+
+                    moveTaskToBack(true)
+                    finishAndRemoveTask()
+                    exitProcess(0)
+
+                }
+
+                //오픈소스 라이선스
+                R.id.item_info -> {
+
+                }
+
+            }
+            true
+        }
 
         // 페이저에 어댑터 연결
         binding.pager.adapter = ViewPagerAdapter(this)
@@ -66,6 +109,15 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                 return false
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(toggle.onOptionsItemSelected(item)){
+
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 }

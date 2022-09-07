@@ -3,4 +3,6 @@
     <string name="todolist">todolist</string>
     <string name="todocalendar">todocalendar</string>
     <string name="donelist">donelist</string>
+    <string name="drawer_opened">Open</string>
+    <string name="drawer_closed">Close</string>
 </resources>
