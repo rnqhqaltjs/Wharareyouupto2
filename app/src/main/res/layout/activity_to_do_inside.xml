@@ -12,6 +12,13 @@
         tools:context=".ToDoCalendar.TodoinsideActivity"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimaryVariant"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark"
+            android:id="@+id/toolbar"/>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="580dp"

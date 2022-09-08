@@ -2,6 +2,7 @@ package com.example.wharareyouupto2.ui.view.activity
 
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,12 @@ class ToDoEditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+
+        //툴바 뒤로가기 UI
+        supportActionBar?.setDisplayShowCustomEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.editViewModel = EditViewModel
 
@@ -169,6 +176,17 @@ class ToDoEditActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    //툴바 뒤로가기 버튼
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }
