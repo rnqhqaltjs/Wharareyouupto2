@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.FragmentDonelistBinding
+import com.example.wharareyouupto2.ui.adapter.DoneAdapter
 import com.example.wharareyouupto2.ui.adapter.TodoAdapter
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 
@@ -17,7 +18,7 @@ class DoneListFragment : Fragment() {
     private var _binding: FragmentDonelistBinding? = null
     private val binding get() = _binding!!
     private val memoList : List<Memo> = listOf()
-    private val adapter : TodoAdapter by lazy { TodoAdapter(requireContext(),memoList,memoViewModel) } // 어댑터 선언
+    private val adapter : DoneAdapter by lazy { DoneAdapter(requireContext(),memoList,memoViewModel) } // 어댑터 선언
     private val memoViewModel: MemoViewModel by viewModels() // 뷰모델 연결
 
     override fun onCreateView(
