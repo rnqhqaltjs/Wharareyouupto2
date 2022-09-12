@@ -132,8 +132,6 @@ class ToDoAddActivity : AppCompatActivity() {
         binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
         binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",maxhour,maxminute)
 
-        Toast.makeText(this, "추가", Toast.LENGTH_SHORT).show()
-
         binding.fab.setOnClickListener {
 
             val title = binding.title.text.toString()
