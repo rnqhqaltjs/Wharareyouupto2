@@ -11,6 +11,7 @@ import coil.api.load
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.ActivityToDoInsideBinding
 import com.example.wharareyouupto2.ui.viewmodel.InsideViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class ToDoInsideActivity : AppCompatActivity() {
 
@@ -57,7 +58,7 @@ class ToDoInsideActivity : AppCompatActivity() {
         binding.deletefab.setOnClickListener {
 
             InsideViewModel.deleteMemo(Memo(id, false, title!!, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day))
-            Toast.makeText(this,"삭제 완료", Toast.LENGTH_SHORT).show()
+            Snackbar.make(it, "삭제 완료", Snackbar.LENGTH_SHORT).show()
             finish()
 
         }

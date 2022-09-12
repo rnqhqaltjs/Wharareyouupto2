@@ -15,6 +15,7 @@ import com.example.wharareyouupto2.alarm.*
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.ActivityToDoAddBinding
 import com.example.wharareyouupto2.ui.viewmodel.EditViewModel
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 class ToDoAddActivity : AppCompatActivity() {
@@ -150,7 +151,7 @@ class ToDoAddActivity : AppCompatActivity() {
 
                 val memo = Memo(0, false, title, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day)
                 EditViewModel.addMemo(memo)
-                Toast.makeText(this, "추가", Toast.LENGTH_SHORT).show()
+                Snackbar.make(it, "추가 완료", Snackbar.LENGTH_SHORT).show()
                 finish()
 
             }
