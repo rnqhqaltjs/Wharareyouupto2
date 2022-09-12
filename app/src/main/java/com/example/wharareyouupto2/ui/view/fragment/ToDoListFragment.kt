@@ -63,9 +63,6 @@ class ToDoListFragment : Fragment() {
         // 메모 데이터가 수정되었을 경우 날짜 데이터를 불러옴 (currentData 변경)
         memoViewModel.readAllData.observe(viewLifecycleOwner) {
             progressbar()
-        }
-
-        memoViewModel.readAllData.observe(viewLifecycleOwner) {
             adapter.setData(it)
         }
 
