@@ -28,7 +28,7 @@ class DoneAdapter(val context: Context, private var memoList:List<Memo>, private
         fun bind(memo: Memo) {
 
             binding.outRecyclerview.adapter = TodoAdapter(context, memoList,memoViewModel)
-            binding.outRecyclerview.layoutManager = LinearLayoutManager(context)
+            binding.outRecyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
         }
     }
 
