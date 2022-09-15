@@ -24,13 +24,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Todolist"
+            android:text="할 일 목록"
             android:layout_gravity="center"
             android:id="@+id/toolbar_title"
             android:textSize="23sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
-            />
+            android:textColor="@color/white" />
 
         </androidx.appcompat.widget.Toolbar>
 
