@@ -93,19 +93,19 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             R.id.todolist -> {
                 // ViewPager의 현재 item에 첫 번째 화면을 대입
                 binding.pager.currentItem = 0
-                binding.toolbarTitle.text = "Todolist"
+                binding.toolbarTitle.text = "할 일 목록"
                 return true
             }
             R.id.todocalendar -> {
                 // ViewPager의 현재 item에 두 번째 화면을 대입
                 binding.pager.currentItem = 1
-                binding.toolbarTitle.text = "TodoCalendar"
+                binding.toolbarTitle.text = "캘린더"
                 return true
             }
             R.id.donelist -> {
                 // ViewPager의 현재 item에 세 번째 화면을 대입
                 binding.pager.currentItem = 2
-                binding.toolbarTitle.text = "Donelist"
+                binding.toolbarTitle.text = "완료 목록"
                 return true
             }
             else -> {

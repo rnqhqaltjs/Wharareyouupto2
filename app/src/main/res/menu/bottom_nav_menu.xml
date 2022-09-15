@@ -4,16 +4,16 @@
     <item
         android:id="@+id/todolist"
         android:icon="@drawable/ic_todolist"
-        android:title="@string/todolist" />
+        android:title="TODO" />
 
     <item
         android:id="@+id/todocalendar"
         android:icon="@drawable/ic_todocalendar"
-        android:title="@string/todocalendar" />
+        android:title="TODO" />
 
     <item
         android:id="@+id/donelist"
         android:icon="@drawable/ic_donelist"
-        android:title="@string/donelist" />
+        android:title="TODO" />
 
 </menu>
