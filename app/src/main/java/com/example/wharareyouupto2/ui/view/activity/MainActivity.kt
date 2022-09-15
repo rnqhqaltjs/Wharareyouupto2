@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             R.id.donelist -> {
                 // ViewPager의 현재 item에 세 번째 화면을 대입
                 binding.pager.currentItem = 2
-                binding.toolbarTitle.text = "완료 목록"
+                binding.toolbarTitle.text = "완료 목록ㅁ"
                 return true
             }
             else -> {
