@@ -1,20 +1,9 @@
 package com.example.wharareyouupto2.ui.view.activity
 
-import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.wharareyouupto2.R
 import com.example.wharareyouupto2.databinding.ActivityMainBinding
@@ -79,6 +68,13 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
                     binding.navView.menu.getItem(position).isChecked = true
+
+                    when (position) {
+                        0 -> binding.toolbarTitle.text = "할 일 목록"
+                        1 -> binding.toolbarTitle.text = "캘린더"
+                        2 -> binding.toolbarTitle.text = "완료 목록"
+
+                    }
                 }
             }
         )
