@@ -23,20 +23,30 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
                 <ProgressBar
                     android:id="@+id/progressBar"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:progress="1"
-                    android:scaleY="1"
-                    android:progressTint="@color/orange"
-                    android:progressDrawable="@drawable/prbdesign"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp" />
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:progress="1"
+                    android:progressDrawable="@drawable/prbdesign"
+                    android:progressTint="@color/orange"
+                    android:scaleY="1.5" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -46,20 +56,14 @@
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/refresh"
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/refresh" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
                         android:text="진행도 : "
                         android:textColor="@color/black"
                         android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:layout_marginStart="2dp" />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/cbc"
@@ -71,6 +75,8 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
+                </FrameLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
