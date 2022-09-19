@@ -86,15 +86,9 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getDateFormatted(): String? {
-        Handler(Looper.getMainLooper()).postDelayed({
 
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd kk:mm:ss E", Locale("ko", "KR"))
-            return dateFormat.format(System.currentTimeMillis())
-            
-
-
-
-        }, 1000)
+        val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일", Locale("ko", "KR"))
+        return dateFormat.format(System.currentTimeMillis())
 
     }
 
