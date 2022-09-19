@@ -100,11 +100,11 @@ class ToDoListFragment : Fragment() {
 
             withContext(Dispatchers.Main) {
 
-                binding.progress.text = "진행도 : " + String.format("%.0f",(progress.toDouble()/max.toDouble())*100) + "%"
+                binding.progress.text = String.format("%.0f",(progress.toDouble()/max.toDouble())*100) + "%"
 //
-//                if(binding.cbc.text == "NaN%"){
-//                    binding.cbc.text = "0%"
-//                }
+                if(binding.progress.text == "NaN%"){
+                    binding.progress.text = "0%"
+                }
 
             }
 

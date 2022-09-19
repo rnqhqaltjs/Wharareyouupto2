@@ -59,14 +59,12 @@
                         android:id="@+id/progress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="진행도 : 0%"
+                        android:layout_gravity="center|bottom"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginStart="5dp"
+                        android:text="0%"
                         android:textColor="@color/black"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:layout_gravity="end"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="5dp"/>
+                        android:textSize="13sp"/>
 
                 </FrameLayout>
 
