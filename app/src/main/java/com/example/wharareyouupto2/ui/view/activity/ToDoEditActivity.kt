@@ -27,12 +27,12 @@ class ToDoEditActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
+        binding.editViewModel = EditViewModel
+
         //툴바 뒤로가기 UI
         supportActionBar?.setDisplayShowCustomEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        binding.editViewModel = EditViewModel
 
         val id = intent.getIntExtra("id",-1)
         val title = intent.getStringExtra("title")

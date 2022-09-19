@@ -49,6 +49,8 @@ class ToDoListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.memoViewModel = MemoViewModel(requireActivity().application)
+
         memodatabase = MemoDatabase.getDatabase(requireContext())!!
 
         // 아이템에 아이디를 설정해줌 (깜빡이는 현상방지)
