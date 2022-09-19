@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import androidx.databinding.ObservableField
 import androidx.lifecycle.*
 import com.example.wharareyouupto2.util.CalendarDecorator.*
 import com.example.wharareyouupto2.data.db.MemoDatabase
@@ -15,6 +16,9 @@ import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 // 뷰모델은 DB에 직접 접근하지 않아야함. Repository 에서 데이터 통신.
@@ -79,6 +83,11 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
             }
         }, 0)
 
+    }
+
+    fun getDateFormatted(): String? {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd kk:mm:ss E", Locale("ko", "KR"))
+        return dateFormat.format(System.currentTimeMillis())
     }
 
  }
