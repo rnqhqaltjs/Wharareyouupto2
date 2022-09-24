@@ -97,14 +97,7 @@ class ToDoAddActivity : AppCompatActivity() {
 
         binding.minimumtime.setOnClickListener {
 
-            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
-                minhour = selectedHour
-                minminute = selectedMinute
-
-                binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
-            }
-
-            TimePickerDialog(this, timeSetListener, minhour, minminute, true).show()
+            getMinimumTime(minhour,minminute)
 
         }
 
@@ -158,6 +151,21 @@ class ToDoAddActivity : AppCompatActivity() {
 
     }
 
+    private fun getMinimumTime(hour: Int, minute: Int){
+        var hours = hour
+        var minutes = minute
+
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
+            hours = selectedHour
+            minutes = selectedMinute
+
+            binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",hours,minutes)
+        }
+
+        TimePickerDialog(this, timeSetListener, hours, minutes, true).show()
+
+    }
+
     private fun scheduleNotification(image: Int, title: String, content: String,
                                      year: Int, month: Int, day: Int, hour: Int, minute: Int) {
 
@@ -177,7 +185,7 @@ class ToDoAddActivity : AppCompatActivity() {
         val alarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.setAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
-            getDate(year,month,day,minhour,minminute),
+            getDate(year,month,day,hour,minute),
             pendingIntent
         )
 

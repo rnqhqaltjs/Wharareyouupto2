@@ -1,12 +1,17 @@
 package com.example.wharareyouupto2.ui.view.activity
 
-import android.app.TimePickerDialog
+import android.app.*
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wharareyouupto2.R
+import com.example.wharareyouupto2.alarm.*
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.ActivityToDoEditBinding
 import com.example.wharareyouupto2.ui.viewmodel.EditViewModel
@@ -22,10 +27,13 @@ class ToDoEditActivity : AppCompatActivity() {
     }
     private val EditViewModel: EditViewModel by viewModels()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+
+        createNotificationsChannel()
 
         binding.editViewModel = EditViewModel
 
@@ -168,13 +176,59 @@ class ToDoEditActivity : AppCompatActivity() {
 
                 val memo = Memo(id, false, title, content,image, alarm, minhour, maxhour, minminute, maxminute, year, month, day)
                 EditViewModel.updateMemo(memo)
-                Snackbar.make(it, "수정 완료", Snackbar.LENGTH_SHORT).show()
+                scheduleNotification(image,title,content,year,month,day,minhour,minminute)
+                Toast.makeText(this, "수정 완료", Toast.LENGTH_SHORT).show()
                 finish()
 
             }
 
         }
 
+    }
+
+    // We create a Notifications channel and register it to our system. We must do this before post our Notifications.
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createNotificationsChannel() {
+        val name = "Notification Channel"
+        val desc = "A Description of the Channel"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(CHANNEL_ID, name, importance)
+        channel.description = desc
+
+        // Registering the channel with the system
+        val notificationManger = applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManger.createNotificationChannel(channel)
+    }
+
+    private fun scheduleNotification(image: Int, title: String, content: String,
+                                     year: Int, month: Int, day: Int, hour: Int, minute: Int) {
+
+        val intent = Intent(applicationContext, Notifications::class.java).apply {
+            putExtra(IMAGE_EXTRA, image)
+            putExtra(TITLE_EXTRA, title)
+            putExtra(MESSAGE_EXTRA, content)
+        }
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            applicationContext,
+            NOTIFICATION_ID,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val alarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setAndAllowWhileIdle(
+            AlarmManager.RTC_WAKEUP,
+            getDate(year,month,day,hour,minute),
+            pendingIntent
+        )
+
+    }
+
+    private fun getDate(year: Int, month: Int, day: Int, hour: Int, minute: Int): Long {
+        val cal = Calendar.getInstance()
+        cal.set(year,month,day,hour,minute)
+        return cal.timeInMillis
     }
 
     //툴바 뒤로가기 버튼
