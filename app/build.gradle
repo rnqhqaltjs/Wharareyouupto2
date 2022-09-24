@@ -62,4 +62,7 @@ dependencies {
 
     //coil
     implementation 'io.coil-kt:coil:0.10.0'
+
+    // Work Manager
+    implementation "androidx.work:work-runtime-ktx:2.7.1"
 }

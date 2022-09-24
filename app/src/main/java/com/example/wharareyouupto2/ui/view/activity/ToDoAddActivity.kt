@@ -15,7 +15,6 @@ import com.example.wharareyouupto2.alarm.*
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.ActivityToDoAddBinding
 import com.example.wharareyouupto2.ui.viewmodel.EditViewModel
-import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 class ToDoAddActivity : AppCompatActivity() {
@@ -40,14 +39,14 @@ class ToDoAddActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
+        binding.editViewModel = EditViewModel
+
+        createNotificationsChannel()
+
         //툴바 뒤로가기 UI
         supportActionBar?.setDisplayShowCustomEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        createNotificationChannel()
-
-        binding.editViewModel = EditViewModel
 
         val year = intent.getIntExtra("year",-1)
         val month = intent.getIntExtra("month",-1)
@@ -128,7 +127,6 @@ class ToDoAddActivity : AppCompatActivity() {
             alarm = isChecked
         }
 
-
         binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
         binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",maxhour,maxminute)
 
@@ -149,7 +147,8 @@ class ToDoAddActivity : AppCompatActivity() {
 
                 val memo = Memo(0, false, title, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day)
                 EditViewModel.addMemo(memo)
-                Snackbar.make(it, "추가 완료", Snackbar.LENGTH_SHORT).show()
+                scheduleNotification(image,title,content,year,month,day,minhour,minminute)
+                Toast.makeText(this, "추가 완료", Toast.LENGTH_SHORT).show()
                 finish()
 
             }
@@ -159,15 +158,49 @@ class ToDoAddActivity : AppCompatActivity() {
 
     }
 
+    private fun scheduleNotification(image: Int, title: String, content: String,
+                                     year: Int, month: Int, day: Int, hour: Int, minute: Int) {
+
+        val intent = Intent(applicationContext, Notifications::class.java).apply {
+            putExtra(IMAGE_EXTRA, image)
+            putExtra(TITLE_EXTRA, title)
+            putExtra(MESSAGE_EXTRA, content)
+        }
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            applicationContext,
+            NOTIFICATION_ID,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val alarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setAndAllowWhileIdle(
+            AlarmManager.RTC_WAKEUP,
+            getDate(year,month,day,minhour,minminute),
+            pendingIntent
+        )
+
+    }
+
+    // We create a Notifications channel and register it to our system. We must do this before post our Notifications.
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun createNotificationChannel() {
-        val name = "Notify Channel"
+    private fun createNotificationsChannel() {
+        val name = "Notification Channel"
         val desc = "A Description of the Channel"
         val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel(channelID, name, importance)
+        val channel = NotificationChannel(CHANNEL_ID, name, importance)
         channel.description = desc
-        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
+
+        // Registering the channel with the system
+        val notificationManger = applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManger.createNotificationChannel(channel)
+    }
+
+    private fun getDate(year: Int, month: Int, day: Int, hour: Int, minute: Int): Long {
+        val cal = Calendar.getInstance()
+        cal.set(year,month,day,hour,minute)
+        return cal.timeInMillis
     }
 
     //툴바 뒤로가기 버튼
