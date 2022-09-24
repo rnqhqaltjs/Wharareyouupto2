@@ -136,7 +136,7 @@ class ToDoEditActivity : AppCompatActivity() {
                 binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
             }
 
-            TimePickerDialog(this, timeSetListener, minhour, minminute, true).show()
+            TimePickerDialog(this, timeSetListener, minhour,minminute, true).show()
 
         }
 

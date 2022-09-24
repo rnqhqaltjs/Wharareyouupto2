@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TimePicker
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
@@ -97,21 +98,13 @@ class ToDoAddActivity : AppCompatActivity() {
 
         binding.minimumtime.setOnClickListener {
 
-            getMinimumTime(minhour,minminute)
+            getMinimumTime()
 
         }
 
         binding.maximumtime.setOnClickListener {
 
-            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
-                maxhour = selectedHour
-                maxminute = selectedMinute
-
-                binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",maxhour,maxminute)
-            }
-
-            TimePickerDialog(this, timeSetListener, maxhour, maxminute, true).show()
-
+            getMaximumTime()
 
         }
 
@@ -141,28 +134,38 @@ class ToDoAddActivity : AppCompatActivity() {
                 val memo = Memo(0, false, title, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day)
                 EditViewModel.addMemo(memo)
                 scheduleNotification(image,title,content,year,month,day,minhour,minminute)
-                Toast.makeText(this, "추가 완료", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "추가 완료$minminute", Toast.LENGTH_SHORT).show()
                 finish()
 
             }
-
 
         }
 
     }
 
-    private fun getMinimumTime(hour: Int, minute: Int){
-        var hours = hour
-        var minutes = minute
+    private fun getMinimumTime(){
 
         val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
-            hours = selectedHour
-            minutes = selectedMinute
+            minhour = selectedHour
+            minminute = selectedMinute
 
-            binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",hours,minutes)
+            binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
         }
 
-        TimePickerDialog(this, timeSetListener, hours, minutes, true).show()
+        TimePickerDialog(this, timeSetListener, minhour, minminute, true).show()
+
+    }
+
+    private fun getMaximumTime(){
+
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, selectedHour, selectedMinute ->
+            maxhour = selectedHour
+            maxminute = selectedMinute
+
+            binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",maxhour,maxminute)
+        }
+
+        TimePickerDialog(this, timeSetListener, maxhour, maxminute, true).show()
 
     }
 
