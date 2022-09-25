@@ -185,8 +185,7 @@ class ToDoEditActivity : AppCompatActivity() {
         }
 
     }
-
-    // We create a Notifications channel and register it to our system. We must do this before post our Notifications.
+    
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createNotificationsChannel() {
         val name = "Notification Channel"
