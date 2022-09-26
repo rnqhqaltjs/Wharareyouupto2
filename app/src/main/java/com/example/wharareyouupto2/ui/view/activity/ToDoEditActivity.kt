@@ -185,7 +185,7 @@ class ToDoEditActivity : AppCompatActivity() {
         }
 
     }
-    
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createNotificationsChannel() {
         val name = "Notification Channel"

@@ -42,8 +42,6 @@ class ToDoAddActivity : AppCompatActivity() {
 
         binding.editViewModel = EditViewModel
 
-        createNotificationsChannel()
-
         //툴바 뒤로가기 UI
         supportActionBar?.setDisplayShowCustomEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -53,6 +51,15 @@ class ToDoAddActivity : AppCompatActivity() {
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
 
+        //미사용은 언다바(_)처리
+        binding.alarm.setOnCheckedChangeListener { _, isChecked ->
+            alarm = isChecked
+        }
+
+        if(alarm){
+            createNotificationsChannel()
+        }
+        
         binding.checkbox.setImageResource(R.drawable.checkboxpick)
         image = R.drawable.checkboxpick
 
@@ -108,10 +115,7 @@ class ToDoAddActivity : AppCompatActivity() {
 
         }
 
-        //미사용은 언다바(_)처리
-        binding.alarm.setOnCheckedChangeListener { _, isChecked ->
-            alarm = isChecked
-        }
+
 
         binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
         binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",maxhour,maxminute)
