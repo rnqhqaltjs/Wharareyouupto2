@@ -10,3 +10,5 @@ https://github.com/rnqhqaltjs/Whatareyouupto
 ## 기능
 
 ## 사용기술
+databinding
+alarmanager
