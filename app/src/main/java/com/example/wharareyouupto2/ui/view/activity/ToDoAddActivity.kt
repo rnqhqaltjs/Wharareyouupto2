@@ -32,7 +32,6 @@ class ToDoAddActivity : AppCompatActivity() {
     private var maxminute = cal.get(Calendar.MINUTE)
     private var image = 0
     private var alarm = false
-    private val notifyId = System.currentTimeMillis().toInt()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,9 +55,7 @@ class ToDoAddActivity : AppCompatActivity() {
             alarm = isChecked
         }
 
-        if(alarm){
-            createNotificationsChannel()
-        }
+        createNotificationsChannel()
 
         binding.checkbox.setImageResource(R.drawable.checkboxpick)
         image = R.drawable.checkboxpick
@@ -115,8 +112,6 @@ class ToDoAddActivity : AppCompatActivity() {
 
         }
 
-
-
         binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
         binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",maxhour,maxminute)
 
@@ -135,10 +130,10 @@ class ToDoAddActivity : AppCompatActivity() {
 
             } else {
 
-                val memo = Memo(0, false, title, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day, notifyId)
+                val memo = Memo(0, false, title, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day)
                 EditViewModel.addMemo(memo)
                 scheduleNotification(image,title,content,year,month,day,minhour,minminute)
-                Toast.makeText(this, "추가 완료$notifyId", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "추가 완료$minminute", Toast.LENGTH_SHORT).show()
                 finish()
 
             }
@@ -184,7 +179,7 @@ class ToDoAddActivity : AppCompatActivity() {
 
         val pendingIntent = PendingIntent.getBroadcast(
             applicationContext,
-            notifyId,
+            NOTIFICATION_ID,
             intent,
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )

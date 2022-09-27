@@ -19,7 +19,5 @@ data class Memo(
     val maxminute: Int,
     val year: Int,
     val month: Int,
-    val day: Int,
-    val notifyId: Int
-
+    val day: Int
 )

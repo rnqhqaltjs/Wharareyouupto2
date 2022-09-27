@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -54,7 +53,6 @@ class ToDoEditActivity : AppCompatActivity() {
         val year = intent.getIntExtra("year",-1)
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
-        val notifyId = intent.getIntExtra("notifyId", -1)
 
         image = when (image) {
             R.drawable.checkboxpick -> {
@@ -175,11 +173,10 @@ class ToDoEditActivity : AppCompatActivity() {
 
             } else{
 
-                val memo = Memo(id, false, title, content,image, alarm, minhour, maxhour, minminute, maxminute, year, month, day, notifyId)
+                val memo = Memo(id, false, title, content,image, alarm, minhour, maxhour, minminute, maxminute, year, month, day)
                 EditViewModel.updateMemo(memo)
                 scheduleNotification(image,title,content,year,month,day,minhour,minminute)
                 Toast.makeText(this, "수정 완료", Toast.LENGTH_SHORT).show()
-                Log.d("notification", NOTIFICATION_ID.toString())
                 finish()
 
             }
