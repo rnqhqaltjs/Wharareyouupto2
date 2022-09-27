@@ -1,4 +1,4 @@
-package com.example.wharareyouupto2.alarm
+package com.example.wharareyouupto2.util
 
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -6,13 +6,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
-import androidx.work.BackoffPolicy
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
-import com.example.wharareyouupto2.R
 import com.example.wharareyouupto2.ui.view.activity.MainActivity
-import java.util.concurrent.TimeUnit
-import kotlin.time.DurationUnit
 
 const val NOTIFICATION_ID = 1
 const val CHANNEL_ID = "Channel1"

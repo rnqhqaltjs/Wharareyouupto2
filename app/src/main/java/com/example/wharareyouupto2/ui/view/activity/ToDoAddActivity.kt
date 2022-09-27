@@ -6,16 +6,15 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.TimePicker
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wharareyouupto2.R
-import com.example.wharareyouupto2.alarm.*
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.ActivityToDoAddBinding
 import com.example.wharareyouupto2.ui.viewmodel.EditViewModel
+import com.example.wharareyouupto2.util.*
 import java.util.*
 
 class ToDoAddActivity : AppCompatActivity() {
@@ -33,6 +32,7 @@ class ToDoAddActivity : AppCompatActivity() {
     private var maxminute = cal.get(Calendar.MINUTE)
     private var image = 0
     private var alarm = false
+    private val notifyId = System.currentTimeMillis().toInt()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +59,7 @@ class ToDoAddActivity : AppCompatActivity() {
         if(alarm){
             createNotificationsChannel()
         }
-        
+
         binding.checkbox.setImageResource(R.drawable.checkboxpick)
         image = R.drawable.checkboxpick
 
@@ -135,10 +135,10 @@ class ToDoAddActivity : AppCompatActivity() {
 
             } else {
 
-                val memo = Memo(0, false, title, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day)
+                val memo = Memo(0, false, title, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day, notifyId)
                 EditViewModel.addMemo(memo)
                 scheduleNotification(image,title,content,year,month,day,minhour,minminute)
-                Toast.makeText(this, "추가 완료$minminute", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "추가 완료$notifyId", Toast.LENGTH_SHORT).show()
                 finish()
 
             }
@@ -184,7 +184,7 @@ class ToDoAddActivity : AppCompatActivity() {
 
         val pendingIntent = PendingIntent.getBroadcast(
             applicationContext,
-            NOTIFICATION_ID,
+            notifyId,
             intent,
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )

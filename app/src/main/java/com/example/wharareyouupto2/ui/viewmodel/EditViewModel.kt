@@ -1,25 +1,15 @@
 package com.example.wharareyouupto2.ui.viewmodel
 
-import android.app.AlarmManager
 import android.app.Application
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import android.graphics.Color
-import android.os.Looper
 import android.util.Log
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.wharareyouupto2.alarm.*
 import com.example.wharareyouupto2.data.db.MemoDatabase
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.data.repository.MemoRepository
-import com.example.wharareyouupto2.util.CalendarDecorator.EventDecorator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
 
 
 class EditViewModel(application: Application) : AndroidViewModel(application) {
