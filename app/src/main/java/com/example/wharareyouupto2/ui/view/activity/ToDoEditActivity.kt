@@ -53,6 +53,7 @@ class ToDoEditActivity : AppCompatActivity() {
         val year = intent.getIntExtra("year",-1)
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
+        val notifyId = intent.getIntExtra("notifyId", -1)
 
         image = when (image) {
             R.drawable.checkboxpick -> {
@@ -173,9 +174,9 @@ class ToDoEditActivity : AppCompatActivity() {
 
             } else{
 
-                val memo = Memo(id, false, title, content,image, alarm, minhour, maxhour, minminute, maxminute, year, month, day)
+                val memo = Memo(id, false, title, content,image, alarm, minhour, maxhour, minminute, maxminute, year, month, day, notifyId)
                 EditViewModel.updateMemo(memo)
-                scheduleNotification(image,title,content,year,month,day,minhour,minminute)
+                scheduleNotification(image,title,content,year,month,day,minhour,minminute,notifyId)
                 Toast.makeText(this, "수정 완료", Toast.LENGTH_SHORT).show()
                 finish()
 
@@ -199,7 +200,7 @@ class ToDoEditActivity : AppCompatActivity() {
     }
 
     private fun scheduleNotification(image: Int, title: String, content: String,
-                                     year: Int, month: Int, day: Int, hour: Int, minute: Int) {
+                                     year: Int, month: Int, day: Int, hour: Int, minute: Int, notifyId: Int) {
 
         val intent = Intent(applicationContext, Notifications::class.java).apply {
             putExtra(IMAGE_EXTRA, image)
@@ -209,7 +210,7 @@ class ToDoEditActivity : AppCompatActivity() {
 
         val pendingIntent = PendingIntent.getBroadcast(
             applicationContext,
-            NOTIFICATION_ID,
+            notifyId,
             intent,
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )

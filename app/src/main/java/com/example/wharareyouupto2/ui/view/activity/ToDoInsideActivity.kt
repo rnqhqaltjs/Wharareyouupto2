@@ -42,6 +42,7 @@ class ToDoInsideActivity : AppCompatActivity() {
         val year = intent.getIntExtra("year",-1)
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
+        val notifyId = intent.getIntExtra("notifyId", -1)
 
         binding.title.text = title
         binding.content.text = content
@@ -56,7 +57,7 @@ class ToDoInsideActivity : AppCompatActivity() {
 
         binding.deletefab.setOnClickListener {
 
-            InsideViewModel.deleteMemo(Memo(id, false, title!!, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day))
+            InsideViewModel.deleteMemo(Memo(id, false, title!!, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day, notifyId))
             Snackbar.make(it, "삭제 완료", Snackbar.LENGTH_SHORT).show()
             finish()
 
@@ -77,6 +78,7 @@ class ToDoInsideActivity : AppCompatActivity() {
                 putExtra("year", year)
                 putExtra("month", month)
                 putExtra("day", day)
+                putExtra("notifyId", notifyId)
                 startActivity(this)
             }
 

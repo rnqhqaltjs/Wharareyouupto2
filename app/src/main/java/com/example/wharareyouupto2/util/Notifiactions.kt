@@ -8,7 +8,7 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import com.example.wharareyouupto2.ui.view.activity.MainActivity
 
-const val NOTIFICATION_ID = 1
+const val NOTIFICATION_ID = "notifyId"
 const val CHANNEL_ID = "Channel1"
 const val TITLE_EXTRA = "titleExtra"
 const val MESSAGE_EXTRA = "message"
@@ -33,6 +33,6 @@ class Notifications : BroadcastReceiver() {
 
         // Registering our channel with the system
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.notify(NOTIFICATION_ID, notification)
+        notificationManager.notify(intent.getIntExtra(NOTIFICATION_ID,-1), notification)
     }
 }

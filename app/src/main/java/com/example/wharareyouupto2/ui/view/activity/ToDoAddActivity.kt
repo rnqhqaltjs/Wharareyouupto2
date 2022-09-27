@@ -32,6 +32,7 @@ class ToDoAddActivity : AppCompatActivity() {
     private var maxminute = cal.get(Calendar.MINUTE)
     private var image = 0
     private var alarm = false
+    private val notifyId = System.currentTimeMillis().toInt()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -130,10 +131,10 @@ class ToDoAddActivity : AppCompatActivity() {
 
             } else {
 
-                val memo = Memo(0, false, title, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day)
+                val memo = Memo(0, false, title, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day, notifyId)
                 EditViewModel.addMemo(memo)
-                scheduleNotification(image,title,content,year,month,day,minhour,minminute)
-                Toast.makeText(this, "추가 완료$minminute", Toast.LENGTH_SHORT).show()
+                scheduleNotification(image,title,content,year,month,day,minhour,minminute,notifyId)
+                Toast.makeText(this, "추가 완료$notifyId", Toast.LENGTH_SHORT).show()
                 finish()
 
             }
@@ -169,7 +170,7 @@ class ToDoAddActivity : AppCompatActivity() {
     }
 
     private fun scheduleNotification(image: Int, title: String, content: String,
-                                     year: Int, month: Int, day: Int, hour: Int, minute: Int) {
+                                     year: Int, month: Int, day: Int, hour: Int, minute: Int, notifyId: Int) {
 
         val intent = Intent(applicationContext, Notifications::class.java).apply {
             putExtra(IMAGE_EXTRA, image)
@@ -179,7 +180,7 @@ class ToDoAddActivity : AppCompatActivity() {
 
         val pendingIntent = PendingIntent.getBroadcast(
             applicationContext,
-            NOTIFICATION_ID,
+            notifyId,
             intent,
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
