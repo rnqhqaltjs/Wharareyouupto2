@@ -33,6 +33,8 @@ class ToDoEditActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
+        createNotificationsChannel()
+
         binding.editViewModel = EditViewModel
 
         //툴바 뒤로가기 UI
@@ -184,6 +186,20 @@ class ToDoEditActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    // We create a Notifications channel and register it to our system. We must do this before post our Notifications.
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createNotificationsChannel() {
+        val name = "Notification Channel"
+        val desc = "A Description of the Channel"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(CHANNEL_ID, name, importance)
+        channel.description = desc
+
+        // Registering the channel with the system
+        val notificationManger = applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManger.createNotificationChannel(channel)
     }
 
     private fun updateNotification(image: Int, title: String, content: String,
