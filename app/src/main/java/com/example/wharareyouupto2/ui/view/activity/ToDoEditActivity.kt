@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -31,8 +32,6 @@ class ToDoEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-
-        createNotificationsChannel()
 
         binding.editViewModel = EditViewModel
 
@@ -176,7 +175,8 @@ class ToDoEditActivity : AppCompatActivity() {
 
                 val memo = Memo(id, false, title, content,image, alarm, minhour, maxhour, minminute, maxminute, year, month, day, notifyId)
                 EditViewModel.updateMemo(memo)
-                scheduleNotification(image,title,content,year,month,day,minhour,minminute,notifyId)
+                updateNotification(image,title,content,year,month,day,minhour,minminute,notifyId)
+                Log.d("notification",minhour.toString() + minminute.toString())
                 Toast.makeText(this, "수정 완료", Toast.LENGTH_SHORT).show()
                 finish()
 
@@ -186,20 +186,7 @@ class ToDoEditActivity : AppCompatActivity() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun createNotificationsChannel() {
-        val name = "Notification Channel"
-        val desc = "A Description of the Channel"
-        val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel(CHANNEL_ID, name, importance)
-        channel.description = desc
-
-        // Registering the channel with the system
-        val notificationManger = applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        notificationManger.createNotificationChannel(channel)
-    }
-
-    private fun scheduleNotification(image: Int, title: String, content: String,
+    private fun updateNotification(image: Int, title: String, content: String,
                                      year: Int, month: Int, day: Int, hour: Int, minute: Int, notifyId: Int) {
 
         val intent = Intent(applicationContext, Notifications::class.java).apply {

@@ -1,6 +1,9 @@
 package com.example.wharareyouupto2.ui.view.activity
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -10,6 +13,10 @@ import coil.api.load
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.ActivityToDoInsideBinding
 import com.example.wharareyouupto2.ui.viewmodel.InsideViewModel
+import com.example.wharareyouupto2.util.IMAGE_EXTRA
+import com.example.wharareyouupto2.util.MESSAGE_EXTRA
+import com.example.wharareyouupto2.util.Notifications
+import com.example.wharareyouupto2.util.TITLE_EXTRA
 import com.google.android.material.snackbar.Snackbar
 
 class ToDoInsideActivity : AppCompatActivity() {
@@ -58,6 +65,7 @@ class ToDoInsideActivity : AppCompatActivity() {
         binding.deletefab.setOnClickListener {
 
             InsideViewModel.deleteMemo(Memo(id, false, title!!, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day, notifyId))
+            cancelNotification(image,title,content!!,notifyId)
             Snackbar.make(it, "삭제 완료", Snackbar.LENGTH_SHORT).show()
             finish()
 
@@ -85,6 +93,25 @@ class ToDoInsideActivity : AppCompatActivity() {
             finish()
 
         }
+
+    }
+
+    private fun cancelNotification(image: Int, title: String, content: String, notifyId: Int) {
+        val intent = Intent(applicationContext, Notifications::class.java).apply {
+            putExtra(IMAGE_EXTRA, image)
+            putExtra(TITLE_EXTRA, title)
+            putExtra(MESSAGE_EXTRA, content)
+        }
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            applicationContext,
+            notifyId,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val alarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.cancel(pendingIntent)
 
     }
 

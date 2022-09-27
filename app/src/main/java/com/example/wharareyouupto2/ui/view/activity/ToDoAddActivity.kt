@@ -134,7 +134,7 @@ class ToDoAddActivity : AppCompatActivity() {
                 val memo = Memo(0, false, title, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day, notifyId)
                 EditViewModel.addMemo(memo)
                 scheduleNotification(image,title,content,year,month,day,minhour,minminute,notifyId)
-                Toast.makeText(this, "추가 완료$notifyId", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "추가 완료", Toast.LENGTH_SHORT).show()
                 finish()
 
             }
