@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.api.load
@@ -66,7 +67,7 @@ class ToDoInsideActivity : AppCompatActivity() {
 
             InsideViewModel.deleteMemo(Memo(id, false, title!!, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day, notifyId))
             cancelNotification(image,title,content!!,notifyId)
-            Snackbar.make(it, "삭제 완료", Snackbar.LENGTH_SHORT).show()
+            Toast.makeText(this, "삭제 완료", Toast.LENGTH_SHORT).show()
             finish()
 
         }

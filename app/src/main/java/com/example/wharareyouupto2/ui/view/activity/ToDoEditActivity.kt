@@ -33,8 +33,6 @@ class ToDoEditActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        createNotificationsChannel()
-
         binding.editViewModel = EditViewModel
 
         //툴바 뒤로가기 UI
@@ -55,6 +53,8 @@ class ToDoEditActivity : AppCompatActivity() {
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
         val notifyId = intent.getIntExtra("notifyId", -1)
+
+        createNotificationsChannel()
 
         image = when (image) {
             R.drawable.checkboxpick -> {
@@ -126,6 +126,8 @@ class ToDoEditActivity : AppCompatActivity() {
         //미사용은 언다바(_)처리
         binding.alarm.setOnCheckedChangeListener { _, isChecked ->
             alarm = isChecked
+            Toast.makeText(this,"${year}년 ${month}월 ${day}일 ${minhour}시 ${minminute}분\n 알람이 " +
+                    "울립니다.", Toast.LENGTH_SHORT).show()
         }
 
         binding.minimumtime.setOnClickListener {
@@ -177,7 +179,9 @@ class ToDoEditActivity : AppCompatActivity() {
 
                 val memo = Memo(id, false, title, content,image, alarm, minhour, maxhour, minminute, maxminute, year, month, day, notifyId)
                 EditViewModel.updateMemo(memo)
-                updateNotification(image,title,content,year,month,day,minhour,minminute,notifyId)
+                if (alarm && getDate(year,month,day,minhour,minminute) >= System.currentTimeMillis()) {
+                    updateNotification(image,title,content,year,month,day,minhour,minminute,notifyId)
+                }
                 Log.d("notification",minhour.toString() + minminute.toString())
                 Toast.makeText(this, "수정 완료", Toast.LENGTH_SHORT).show()
                 finish()

@@ -51,11 +51,6 @@ class ToDoAddActivity : AppCompatActivity() {
         val month = intent.getIntExtra("month",-1)
         val day = intent.getIntExtra("day",-1)
 
-        //미사용은 언다바(_)처리
-        binding.alarm.setOnCheckedChangeListener { _, isChecked ->
-            alarm = isChecked
-        }
-
         createNotificationsChannel()
 
         binding.checkbox.setImageResource(R.drawable.checkboxpick)
@@ -101,6 +96,9 @@ class ToDoAddActivity : AppCompatActivity() {
             image = R.drawable.starpick
         }
 
+        binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
+        binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",maxhour,maxminute)
+
         binding.minimumtime.setOnClickListener {
 
             getMinimumTime()
@@ -113,8 +111,12 @@ class ToDoAddActivity : AppCompatActivity() {
 
         }
 
-        binding.minimumtime.text = String.format(Locale.KOREA, "%02d:%02d",minhour,minminute)
-        binding.maximumtime.text = String.format(Locale.KOREA, "%02d:%02d",maxhour,maxminute)
+        //미사용은 언다바(_)처리
+        binding.alarm.setOnCheckedChangeListener { _, isChecked ->
+            alarm = isChecked
+            Toast.makeText(this,"${year}년 ${month}월 ${day}일 ${minhour}시 ${minminute}분\n 알람이 " +
+                    "울립니다.", Toast.LENGTH_SHORT).show()
+        }
 
         binding.fab.setOnClickListener {
 
@@ -133,7 +135,9 @@ class ToDoAddActivity : AppCompatActivity() {
 
                 val memo = Memo(0, false, title, content, image, alarm, minhour, maxhour, minminute, maxminute, year, month, day, notifyId)
                 EditViewModel.addMemo(memo)
-                scheduleNotification(image,title,content,year,month,day,minhour,minminute,notifyId)
+                if (alarm && getDate(year,month,day,minhour,minminute) >= System.currentTimeMillis()) {
+                    scheduleNotification(image,title,content,year,month,day,minhour,minminute,notifyId)
+                }
                 Toast.makeText(this, "추가 완료", Toast.LENGTH_SHORT).show()
                 finish()
 
