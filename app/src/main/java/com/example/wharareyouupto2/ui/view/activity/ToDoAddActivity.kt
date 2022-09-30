@@ -205,7 +205,7 @@ class ToDoAddActivity : AppCompatActivity() {
         )
 
         val alarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.setAndAllowWhileIdle(
+        alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
             getDate(year,month,day,hour,minute),
             pendingIntent
