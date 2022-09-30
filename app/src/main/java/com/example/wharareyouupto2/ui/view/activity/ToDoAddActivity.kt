@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -209,7 +210,7 @@ class ToDoAddActivity : AppCompatActivity() {
             getDate(year,month,day,hour,minute),
             pendingIntent
         )
-
+        Log.d("alarm", pendingIntent.toString())
     }
 
     private fun getDate(year: Int, month: Int, day: Int, hour: Int, minute: Int): Long {

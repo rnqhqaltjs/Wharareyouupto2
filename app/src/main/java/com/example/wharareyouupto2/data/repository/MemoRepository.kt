@@ -26,6 +26,4 @@ class MemoRepository(private val memoDao: MemoDao) {
         return memoDao.readDateData(year, month, day)
     }
 
-    fun getAllAlarms() : Flow<List<Memo>> = memoDao.getAllAlarms()
-
 }
