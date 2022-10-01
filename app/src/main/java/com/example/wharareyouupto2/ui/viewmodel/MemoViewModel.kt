@@ -60,7 +60,7 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
         val dates = ArrayList<CalendarDay>()
 
         viewModelScope.launch(Dispatchers.IO) {
-            val scheduleList = memoDatabase.memoDao().getAll()
+            val scheduleList = memoDatabase.memoDao().getCalendarAll()
             if (scheduleList.isNotEmpty()) {
                 for (i in scheduleList.indices) {
                     val dot_year = scheduleList[i].year

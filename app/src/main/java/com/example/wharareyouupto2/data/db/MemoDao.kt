@@ -29,11 +29,16 @@ interface MemoDao {
     @Query("SELECT * FROM Memo WHERE `check` = 1 ORDER BY year DESC, month DESC, day DESC, id DESC")
     fun readDoneData() : Flow<List<Memo>>
 
-    // 모든 날짜를 가져옴
-    @Query("SELECT * FROM Memo")
-    fun getAll() : List<Memo>
 
-    @Query("SELECT * FROM Memo WHERE `check` = 1")
-    fun getCompletion() : List<Memo>
+    @Query("SELECT * FROM Memo ")
+    fun getCalendarAll() : List<Memo>
+
+    // 모든 날짜를 가져옴
+    @Query("SELECT * FROM Memo WHERE year = :year AND month = :month AND day = :day")
+    fun getTodayAll(year : Int, month : Int, day : Int) : List<Memo>
+
+
+    @Query("SELECT * FROM Memo WHERE year = :year AND month = :month AND day = :day AND `check` = 1")
+    fun getCompletion(year : Int, month : Int, day : Int) : List<Memo>
 
 }

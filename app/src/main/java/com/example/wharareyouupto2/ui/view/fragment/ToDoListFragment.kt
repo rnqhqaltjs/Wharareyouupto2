@@ -1,9 +1,7 @@
 package com.example.wharareyouupto2.ui.view.fragment
 
-import android.R
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -90,13 +88,14 @@ class ToDoListFragment : Fragment() {
 
     private fun getSelectDate(){
 
-        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+        val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
             currentYear = year
             currentMonth = month
             currentDate = dayOfMonth
 
             binding.dateFormatted.text = "${year}년 ${month+1}월 ${dayOfMonth}일"
             memoViewModel.readDateData(currentYear,currentMonth,currentDate)
+            progressbar()
         }
         DatePickerDialog(requireContext(), dateSetListener, currentYear,currentMonth,currentDate).show()
 
@@ -118,8 +117,8 @@ class ToDoListFragment : Fragment() {
 
         lifecycleScope.launch(Dispatchers.IO) {
 
-            val progress = memodatabase.memoDao().getCompletion().size
-            val max = memodatabase.memoDao().getAll().size
+            val progress = memodatabase.memoDao().getCompletion(currentYear,currentMonth,currentDate).size
+            val max = memodatabase.memoDao().getTodayAll(currentYear,currentMonth,currentDate).size
 
             binding.progressBar.progress = progress
             binding.progressBar.max = max
@@ -127,7 +126,7 @@ class ToDoListFragment : Fragment() {
             withContext(Dispatchers.Main) {
 
                 binding.progress.text = String.format("%.0f",(progress.toDouble()/max.toDouble())*100) + "%"
-//
+
                 if(binding.progress.text == "NaN%"){
                     binding.progress.text = "0%"
                 }
