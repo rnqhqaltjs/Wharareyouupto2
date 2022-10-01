@@ -2,10 +2,8 @@ package com.example.wharareyouupto2.ui.view.fragment
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,7 +62,7 @@ class ToDoListFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
         binding.recyclerView.adapter = adapter
 
-        binding.dateFormatted.setOnClickListener {
+        binding.editcalendar.setOnClickListener {
 
             val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                 currentYear = year

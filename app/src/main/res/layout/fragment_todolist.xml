@@ -23,91 +23,100 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/dateFormatted"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{MemoViewModel.dateFormatted}"
-                    android:textSize="23sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center_horizontal"/>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                    <ProgressBar
-                        android:id="@+id/progressBar"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:progress="1"
-                        android:progressDrawable="@drawable/prbdesign"
-                        android:progressTint="@color/orange"
-                        android:scaleY="1.3" />
-
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/progress"
+                        android:id="@+id/dateFormatted"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center|bottom"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginStart="5dp"
-                        android:text="0%"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:hint="2022년 10월 02일"
+                        android:paddingEnd="8dp"
+                        android:text="@{MemoViewModel.dateFormatted}"
                         android:textColor="@color/black"
-                        android:textSize="13sp"/>
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
 
-                </FrameLayout>
+                    <ImageView
+                        android:id="@+id/editcalendar"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toEndOf="@+id/dateFormatted"
+                        app:srcCompat="@drawable/editcalendar"
+                        app:tint="@color/orange" />
 
-                    <LinearLayout
+                </RelativeLayout>
+
+
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_height="match_parent">
 
-                        <androidx.cardview.widget.CardView
+                        <ProgressBar
+                            android:id="@+id/progressBar"
+                            style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:elevation="10dp"
-                            app:cardCornerRadius="15dp">
+                            android:layout_height="match_parent"
+                            android:layout_gravity="bottom"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:progress="1"
+                            android:progressDrawable="@drawable/prbdesign"
+                            android:progressTint="@color/orange"
+                            android:scaleY="1.3" />
 
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recyclerView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:overScrollMode="never"/>
-                        </androidx.cardview.widget.CardView>
-
-                        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                            android:id="@+id/fab"
+                        <TextView
+                            android:id="@+id/progress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_marginBottom="10dp"
-                            android:backgroundTint="@color/orange"
-                            android:src="@drawable/ic_add"
-                            app:tint="@android:color/white"
-                            tools:ignore="SpeakableTextPresentCheck" />
+                            android:layout_gravity="center|bottom"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginBottom="4dp"
+                            android:text="0%"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
 
-                    </LinearLayout>
+                    </FrameLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:elevation="10dp"
+                    app:cardCornerRadius="15dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never"/>
+                    </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="@color/orange"
+                    android:src="@drawable/ic_add"
+                    app:tint="@android:color/white"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
 
     </FrameLayout>
+
 </layout>
