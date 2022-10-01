@@ -182,7 +182,6 @@ class ToDoEditActivity : AppCompatActivity() {
                 if (alarm && getDate(year,month,day,minhour,minminute) >= System.currentTimeMillis()) {
                     updateNotification(image,title,content,year,month,day,minhour,minminute,notifyId)
                 }
-                Log.d("notification",minhour.toString() + minminute.toString())
                 Toast.makeText(this, "수정 완료", Toast.LENGTH_SHORT).show()
                 finish()
 

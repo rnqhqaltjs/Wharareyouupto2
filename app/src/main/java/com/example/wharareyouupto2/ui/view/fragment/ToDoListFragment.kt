@@ -1,17 +1,18 @@
 package com.example.wharareyouupto2.ui.view.fragment
 
+import android.R
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.wharareyouupto2.R
 import com.example.wharareyouupto2.data.db.MemoDatabase
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.FragmentTodolistBinding
@@ -23,6 +24,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
 
+
 class ToDoListFragment : Fragment() {
 
     private var _binding: FragmentTodolistBinding? = null
@@ -33,9 +35,9 @@ class ToDoListFragment : Fragment() {
     private lateinit var memodatabase: MemoDatabase
 
     private val calendar = Calendar.getInstance()
-    private val currentYear = calendar.get(Calendar.YEAR)
-    private val currentMonth = calendar.get(Calendar.MONTH)
-    private val currentDate = calendar.get(Calendar.DATE)
+    private var currentYear = calendar.get(Calendar.YEAR)
+    private var currentMonth = calendar.get(Calendar.MONTH)
+    private var currentDate = calendar.get(Calendar.DATE)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,9 +64,19 @@ class ToDoListFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
         binding.recyclerView.adapter = adapter
 
+        binding.dateFormatted.setOnClickListener {
+            getSelectDate()
+        }
+
+
         // 메모 데이터가 수정되었을 경우 날짜 데이터를 불러옴 (currentData 변경)
         memoViewModel.readAllData.observe(viewLifecycleOwner) {
+            memoViewModel.readDateData(currentYear,currentMonth,currentDate)
             progressbar()
+        }
+
+        // 현재 날짜 데이터 리스트(currentData) 관찰하여 변경시 어댑터에 전달해줌
+        memoViewModel.currentData.observe(viewLifecycleOwner) {
             adapter.setData(it)
         }
 
@@ -73,6 +85,20 @@ class ToDoListFragment : Fragment() {
             onFabClicked()
 
         }
+
+    }
+
+    private fun getSelectDate(){
+
+        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            currentYear = year
+            currentMonth = month
+            currentDate = dayOfMonth
+
+            binding.dateFormatted.text = "${year}년 ${month+1}월 ${dayOfMonth}일"
+            memoViewModel.readDateData(currentYear,currentMonth,currentDate)
+        }
+        DatePickerDialog(requireContext(), dateSetListener, currentYear,currentMonth,currentDate).show()
 
     }
 

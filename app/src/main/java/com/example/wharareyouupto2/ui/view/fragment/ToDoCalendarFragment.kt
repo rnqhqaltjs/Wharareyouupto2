@@ -15,7 +15,6 @@ import com.example.wharareyouupto2.databinding.FragmentTodocalendarBinding
 import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.ui.view.activity.ToDoAddActivity
 import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
-import com.prolificinteractive.materialcalendarview.CalendarDay
 
 class ToDoCalendarFragment : Fragment() {
 
