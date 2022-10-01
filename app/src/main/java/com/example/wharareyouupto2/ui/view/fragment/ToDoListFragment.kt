@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -63,7 +65,20 @@ class ToDoListFragment : Fragment() {
         binding.recyclerView.adapter = adapter
 
         binding.dateFormatted.setOnClickListener {
-            getSelectDate()
+
+            val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                currentYear = year
+                currentMonth = month
+                currentDate = dayOfMonth
+
+                binding.dateFormatted.text = "${year}년 ${month+1}월 ${dayOfMonth}일"
+
+                memoViewModel.readDateData(currentYear,currentMonth,currentDate)
+                progressbar()
+
+            }
+            DatePickerDialog(requireContext(), dateSetListener, currentYear,currentMonth,currentDate).show()
+
         }
 
 
@@ -83,21 +98,6 @@ class ToDoListFragment : Fragment() {
             onFabClicked()
 
         }
-
-    }
-
-    private fun getSelectDate(){
-
-        val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            currentYear = year
-            currentMonth = month
-            currentDate = dayOfMonth
-
-            binding.dateFormatted.text = "${year}년 ${month+1}월 ${dayOfMonth}일"
-            memoViewModel.readDateData(currentYear,currentMonth,currentDate)
-            progressbar()
-        }
-        DatePickerDialog(requireContext(), dateSetListener, currentYear,currentMonth,currentDate).show()
 
     }
 

@@ -38,7 +38,7 @@ interface MemoDao {
     fun getTodayAll(year : Int, month : Int, day : Int) : List<Memo>
 
 
-    @Query("SELECT * FROM Memo WHERE year = :year AND month = :month AND day = :day AND `check` = 1")
+    @Query("SELECT * FROM Memo WHERE `check` = 1 AND year = :year AND month = :month AND day = :day")
     fun getCompletion(year : Int, month : Int, day : Int) : List<Memo>
 
 }
