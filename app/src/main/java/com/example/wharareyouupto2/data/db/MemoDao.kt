@@ -29,15 +29,15 @@ interface MemoDao {
     @Query("SELECT * FROM Memo WHERE `check` = 1 ORDER BY year DESC, month DESC, day DESC, id DESC")
     fun readDoneData() : Flow<List<Memo>>
 
-
+    // 캘린더에 모든 날짜 가져옴
     @Query("SELECT * FROM Memo ")
     fun getCalendarAll() : List<Memo>
 
-    // 모든 날짜를 가져옴
+    // 모든 오늘 날짜를 가져옴
     @Query("SELECT * FROM Memo WHERE year = :year AND month = :month AND day = :day")
     fun getTodayAll(year : Int, month : Int, day : Int) : List<Memo>
 
-
+    // 모든 오늘 날짜 중에 완료된 날짜만 가져옴
     @Query("SELECT * FROM Memo WHERE `check` = 1 AND year = :year AND month = :month AND day = :day")
     fun getCompletion(year : Int, month : Int, day : Int) : List<Memo>
 

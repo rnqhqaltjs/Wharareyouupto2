@@ -2,13 +2,13 @@ package com.example.wharareyouupto2.ui.view.fragment
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -120,8 +120,8 @@ class ToDoListFragment : Fragment() {
             val progress = memodatabase.memoDao().getCompletion(currentYear,currentMonth,currentDate).size
             val max = memodatabase.memoDao().getTodayAll(currentYear,currentMonth,currentDate).size
 
-            binding.progressBar.progress = progress
             binding.progressBar.max = max
+            binding.progressBar.progress = progress
 
             withContext(Dispatchers.Main) {
 
