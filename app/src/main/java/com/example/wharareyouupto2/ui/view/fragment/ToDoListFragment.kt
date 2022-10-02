@@ -69,7 +69,7 @@ class ToDoListFragment : Fragment() {
                 currentMonth = month
                 currentDate = dayOfMonth
 
-                binding.dateFormatted.text = "${year}년 ${month+1}월 ${dayOfMonth}일"
+                binding.dateFormatted.text = "${year}년 ${month+1}월 " + String.format("%02d", dayOfMonth)+"일"
 
                 memoViewModel.readDateData(currentYear,currentMonth,currentDate)
                 progressbar()
@@ -78,7 +78,6 @@ class ToDoListFragment : Fragment() {
             DatePickerDialog(requireContext(), dateSetListener, currentYear,currentMonth,currentDate).show()
 
         }
-
 
         // 메모 데이터가 수정되었을 경우 날짜 데이터를 불러옴 (currentData 변경)
         memoViewModel.readAllData.observe(viewLifecycleOwner) {
@@ -124,10 +123,7 @@ class ToDoListFragment : Fragment() {
             withContext(Dispatchers.Main) {
 
                 binding.progress.text = String.format("%.0f",(progress.toDouble()/max.toDouble())*100) + "%"
-
-                if(binding.progress.text == "NaN%"){
-                    binding.progress.text = "0%"
-                }
+                if(binding.progress.text == "NaN%"){ binding.progress.text = "0%" }
 
             }
 

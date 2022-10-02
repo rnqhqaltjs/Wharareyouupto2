@@ -25,7 +25,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp">
 
                     <TextView
                         android:id="@+id/dateFormatted"
@@ -34,7 +35,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         android:hint="2022년 10월 02일"
-                        android:paddingEnd="8dp"
+                        android:paddingEnd="7dp"
                         android:text="@{MemoViewModel.dateFormatted}"
                         android:textColor="@color/black"
                         android:textSize="25sp"
