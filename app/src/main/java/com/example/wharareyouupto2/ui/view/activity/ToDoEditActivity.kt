@@ -126,8 +126,8 @@ class ToDoEditActivity : AppCompatActivity() {
         //미사용은 언다바(_)처리
         binding.alarm.setOnCheckedChangeListener { _, isChecked ->
             alarm = isChecked
-            Toast.makeText(this,"${year}년 ${month}월 ${day}일 ${minhour}시 ${minminute}분\n 알람이 " +
-                    "울립니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"${year}년 ${month}월 ${day}일 ${minhour}시 ${minminute}분\n " +
+                    "알람이 울립니다.", Toast.LENGTH_SHORT).show()
         }
 
         binding.minimumtime.setOnClickListener {
