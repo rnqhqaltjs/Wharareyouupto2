@@ -69,7 +69,7 @@ class ToDoListFragment : Fragment() {
                 currentMonth = month
                 currentDate = dayOfMonth
 
-                binding.dateFormatted.text = "${year}년 ${month+1}월 " + String.format("%02d", dayOfMonth)+"일"
+                binding.dateFormatted.text = "${year}년 " + String.format("%02d", month+1)+"월 " + String.format("%02d", dayOfMonth)+"일"
 
                 memoViewModel.readDateData(currentYear,currentMonth,currentDate)
                 progressbar()
