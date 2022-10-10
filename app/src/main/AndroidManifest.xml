@@ -15,14 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Wharareyouupto2"
         tools:targetApi="31" >
-        <activity
-            android:name=".SettingActivity"
-            android:exported="false"
-            android:label="@string/title_activity_setting"
-            android:theme="@style/Theme.Wharareyouupto2.NoActionBar" />
-
         <receiver
             android:name=".util.Notifications"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.view.activity.SettingActivity"
             android:exported="false" />
 
         <activity
