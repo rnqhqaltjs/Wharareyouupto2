@@ -10,5 +10,8 @@ https://github.com/rnqhqaltjs/Whatareyouupto
 ## 기능
 
 ## 사용기술
+MVVM, AAC
 databinding
 alarmanager
+Notification
+MaterialCalendarView
