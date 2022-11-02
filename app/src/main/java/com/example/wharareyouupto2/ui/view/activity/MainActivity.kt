@@ -1,5 +1,6 @@
 package com.example.wharareyouupto2.ui.view.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -46,6 +47,14 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                     moveTaskToBack(true)
                     finishAndRemoveTask()
                     exitProcess(0)
+
+                }
+
+                //세팅
+                R.id.item_setting -> {
+
+                    val intent = Intent(this, SettingActivity::class.java)
+                    startActivity(intent)
 
                 }
 

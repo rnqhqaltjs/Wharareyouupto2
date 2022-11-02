@@ -14,9 +14,16 @@
         android:icon="@drawable/exit"/>
 
     <item
+        android:id="@+id/item_setting"
+        android:title="설정"
+        android:icon="@drawable/setting"/>
+
+    <item
         android:id="@+id/item_info"
         android:title="오픈소스 라이선스"
         android:icon="@drawable/info"/>
+
+
 
 
 </menu>
