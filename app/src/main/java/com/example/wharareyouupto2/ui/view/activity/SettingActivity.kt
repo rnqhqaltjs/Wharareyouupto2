@@ -1,6 +1,7 @@
 package com.example.wharareyouupto2.ui.view.activity
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.asLiveData
@@ -21,6 +22,13 @@ class SettingActivity : AppCompatActivity() {
 
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+
+        //툴바 뒤로가기 UI
+        supportActionBar?.setDisplayShowCustomEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         settingDataStore = SettingDataStore(this)
         observeUIPreferences()
         initView()
@@ -56,5 +64,16 @@ class SettingActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    //툴바 뒤로가기 버튼
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
