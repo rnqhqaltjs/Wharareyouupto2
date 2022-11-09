@@ -2,4 +2,5 @@
 <resources>
 
     <color name="textcolor">#ffffff</color>
+    <color name="selectcolor">#404040</color>
 </resources>

@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:text="일정"
             android:textSize="40sp"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolor"
             android:layout_margin="10dp" />
 
         <View
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:text="알람 : "
                 android:textSize="20sp"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolor"
                 android:textStyle="bold" />
 
             <View
@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:text="시작 : "
                 android:textSize="20sp"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolor"
                 android:textStyle="bold" />
 
             <View
@@ -186,7 +186,7 @@
                 android:layout_height="wrap_content"
                 android:text="종료 : "
                 android:textSize="20sp"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolor"
                 android:textStyle="bold" />
 
             <View

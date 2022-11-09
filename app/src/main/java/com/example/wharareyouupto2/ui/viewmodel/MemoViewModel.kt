@@ -6,8 +6,10 @@ import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.databinding.ObservableField
 import androidx.lifecycle.*
+import com.example.wharareyouupto2.R
 import com.example.wharareyouupto2.util.CalendarDecorator.*
 import com.example.wharareyouupto2.data.db.MemoDatabase
 import com.example.wharareyouupto2.data.model.Memo
@@ -77,9 +79,10 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
             calendar!!.removeDecorators()
             calendar.invalidateDecorators()
 
-            calendar.addDecorators(BoldDecorator(), SundayDecorator(), SaturdayDecorator(), MySelectorDecorator(context), TodayDecorator(context))
+            calendar.addDecorators(BoldDecorator(context), SundayDecorator(), SaturdayDecorator(), MySelectorDecorator(context), TodayDecorator(context))
             if (dates.size > 0) {
-                calendar.addDecorator(EventDecorator(Color.BLACK, dates)) // 점 찍기
+                val myColor = ContextCompat.getColor(context, R.color.textcolor)
+                calendar.addDecorator(EventDecorator(myColor, dates)) // 점 찍기
             }
         }, 0)
 

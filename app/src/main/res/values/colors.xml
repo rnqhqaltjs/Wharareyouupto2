@@ -10,4 +10,5 @@
     <color name="orange">#FF7F00</color>
 
     <color name="textcolor">#000000</color>
+    <color name="selectcolor">#ffffff</color>
 </resources>
