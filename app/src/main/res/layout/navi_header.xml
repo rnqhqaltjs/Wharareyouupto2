@@ -17,7 +17,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="106dp"
             android:text="김승우"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolor"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"

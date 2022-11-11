@@ -28,7 +28,8 @@
                     android:id="@+id/calendarView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:mcv_selectionColor="@color/orange" />
+                    app:mcv_selectionColor="@color/orange"
+                    app:mcv_arrowColor="@color/textcolor"/>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView

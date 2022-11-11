@@ -11,4 +11,5 @@
 
     <color name="textcolor">#000000</color>
     <color name="selectcolor">#ffffff</color>
+    <color name="cardviewcolor">#dddddd</color>
 </resources>
