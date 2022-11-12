@@ -15,27 +15,13 @@
       app:theme="@style/ThemeOverlay.AppCompat.Dark"
       android:id="@+id/toolbar"/>
 
-  <TextView
-      android:id="@+id/titleTV"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="다크모드"
-      android:textSize="24sp"
-      android:textStyle="bold"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
   <androidx.appcompat.widget.SwitchCompat
       android:id="@+id/applyModeSwitch"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
+      android:layout_margin="10dp"
+      android:textSize="20sp"
       android:text="다크모드"
-      app:layout_constraintEnd_toEndOf="@+id/titleTV"
-      app:layout_constraintStart_toStartOf="@+id/titleTV"
-      app:layout_constraintTop_toBottomOf="@+id/titleTV"
       app:switchPadding="8dp" />
 
 
