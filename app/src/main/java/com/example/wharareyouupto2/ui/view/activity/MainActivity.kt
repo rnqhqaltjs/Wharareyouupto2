@@ -3,8 +3,10 @@ package com.example.wharareyouupto2.ui.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.lifecycleScope
@@ -53,16 +55,32 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                 //데이터 초기화
                 R.id.item_deleteall -> {
 
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("주의")
+                    builder.setMessage("데이터를 초기화 하시겠습니까?")
 
+                    builder.setNegativeButton("아니오") { dialog, which ->
 
-                    lifecycleScope.launch(Dispatchers.IO) {
+                    }
 
+                    builder.setPositiveButton("네") { dialog, which ->
 
-                        MemoViewModel.deleteAllMemo(memodatabase)
+                        lifecycleScope.launch(Dispatchers.IO) {
 
+                            MemoViewModel.deleteAllMemo(memodatabase)
 
                         }
 
+                        Toast.makeText(this,"데이터 초기화 완료", Toast.LENGTH_SHORT).show()
+                        finish();//인텐트 종료
+                        overridePendingTransition(0, 0);//인텐트 효과 없애기
+                        val intent = intent; //인텐트
+                        startActivity(intent); //액티비티 열기
+                        overridePendingTransition(0, 0)
+
+                    }
+
+                    builder.show()
 
                 }
 
