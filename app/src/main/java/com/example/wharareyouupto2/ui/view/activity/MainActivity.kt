@@ -3,25 +3,39 @@ package com.example.wharareyouupto2.ui.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.wharareyouupto2.R
+import com.example.wharareyouupto2.data.db.MemoDatabase
+import com.example.wharareyouupto2.data.model.Memo
 import com.example.wharareyouupto2.databinding.ActivityMainBinding
 import com.example.wharareyouupto2.ui.adapter.ViewPagerAdapter
+import com.example.wharareyouupto2.ui.viewmodel.InsideViewModel
+import com.example.wharareyouupto2.ui.viewmodel.MemoViewModel
 import com.google.android.material.navigation.NavigationBarView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+    private val MemoViewModel: MemoViewModel by viewModels() // 뷰모델 연결
     lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var memodatabase: MemoDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+
+        memodatabase = MemoDatabase.getDatabase(this)!!
 
         toggle = ActionBarDrawerToggle(this,binding.drawer,
             R.string.drawer_opened,
@@ -38,6 +52,17 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
                 //데이터 초기화
                 R.id.item_deleteall -> {
+
+
+
+                    lifecycleScope.launch(Dispatchers.IO) {
+
+
+                        MemoViewModel.deleteAllMemo(memodatabase)
+
+
+                        }
+
 
                 }
 

@@ -95,4 +95,8 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
+    fun deleteAllMemo(memoDatabase: MemoDatabase){
+        memoDatabase.memoDao().deleteAllMemo()
+    }
+
  }
