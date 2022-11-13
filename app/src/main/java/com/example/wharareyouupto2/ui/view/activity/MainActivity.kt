@@ -104,6 +104,9 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                 //오픈소스 라이선스
                 R.id.item_info -> {
 
+                    val intent = Intent(this, OssLicensesMenuActivity::class.java)
+                    startActivity(intent)
+
                 }
 
             }
