@@ -52,7 +52,6 @@
 
                 </RelativeLayout>
 
-
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
@@ -100,6 +99,13 @@
                         android:layout_height="wrap_content"
                         android:overScrollMode="never"/>
                     </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="테스트"
+                    android:visibility="invisible"/>
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab"

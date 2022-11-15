@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -83,6 +84,7 @@ class ToDoListFragment : Fragment() {
         memoViewModel.readAllData.observe(viewLifecycleOwner) {
             memoViewModel.readDateData(currentYear,currentMonth,currentDate)
             progressbar()
+            texttest()
         }
 
         // 현재 날짜 데이터 리스트(currentData) 관찰하여 변경시 어댑터에 전달해줌
@@ -124,6 +126,32 @@ class ToDoListFragment : Fragment() {
 
                 binding.progress.text = String.format("%.0f",(progress.toDouble()/max.toDouble())*100) + "%"
                 if(binding.progress.text == "NaN%"){ binding.progress.text = "0%" }
+
+            }
+
+        }
+
+    }
+
+    private fun texttest(){
+
+        lifecycleScope.launch(Dispatchers.IO) {
+
+            if(memodatabase.memoDao().getTodayAll(currentYear, currentMonth, currentDate).isEmpty()){
+
+                withContext(Dispatchers.Main) {
+
+                    binding.textView.isVisible= true
+
+                }
+
+            } else{
+
+                withContext(Dispatchers.Main) {
+
+                    binding.textView.isVisible= false
+
+                }
 
             }
 
